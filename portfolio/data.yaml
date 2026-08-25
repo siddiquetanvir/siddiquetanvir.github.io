@@ -1,0 +1,68 @@
+hero:
+  name: "Tanvir Siddique"
+  alias: "TanvirSdq"
+  status_badge: "Computer Science & Engineering"
+  headline: "Building CS Foundations & Open Source Automation"
+  bio: "First-year Computer Science & Engineering student at KUET. Building core programming foundations in C/C++ while automating open-data systems with Python."
+  socials:
+    - label: "LinkedIn"
+      url: "https://www.linkedin.com/in/tanvirsdq"
+    - label: "GitHub"
+      url: "https://github.com/siddiquetanvir"
+    - label: "Wikimedia"
+      url: "https://meta.wikimedia.org/wiki/User:TanvirSdq"
+
+impact_metrics:
+  - number: "47,000+"
+    label: "Automated Bot Edits"
+  - number: "6,000+"
+    label: "Manual Open-Data Contributions"
+  - number: "15,800+"
+    label: "Media Files Categorized"
+  - number: "10,000+"
+    label: "Articles Structured"
+
+skills:
+  core_programming:
+    - "C / C++"
+    - "Python"
+    - "Git & GitHub"
+  automation_and_data:
+    - "Pywikibot"
+    - "Streamlit"
+    - "REST APIs"
+    - "Data Visualization"
+  leadership_and_ops:
+    - "Open Source Coordination"
+    - "Metadata Taxonomy"
+    - "Technical Operations"
+
+featured_projects:
+  - title: "Wikimedia Campaign Analytics"
+    badge: "PYTHON / STREAMLIT"
+    description: "An interactive web app providing retention metrics and raw data visualization across open-knowledge initiatives."
+    github: "https://github.com/siddiquetanvir/WebApp"
+  - title: "Wikipedia Bot & Categorization Framework"
+    badge: "JUPYTERLAB / PYWIKIBOT"
+    description: "Custom Python framework (TanvirSdqBot) executing cross-wiki updates, user onboarding, and automated taxonomy management."
+    github: "https://github.com/siddiquetanvir/TanvirSdqBot"
+
+experience:
+  - role: "Volunteer Contributor & Bot Operator"
+    organization: "Wikimedia Foundation"
+    period: "2022 — PRESENT"
+    details: "Engineering automated Pywikibot scripts handling cross-wiki maintenance across Wikipedia, Wikidata, and Wikimedia Commons."
+  - role: "Technical & Data Lead"
+    organization: "Project Korikath"
+    period: "2024 — PRESENT"
+    details: "Managing technical infrastructure support and custom Python utility scripts for campaign analytics."
+
+personal_interests:
+  category: "EXPLORE"
+  title: "Computational Linguistics, History & Open Access"
+  description: "Investigating low-resource language preservation (Fulfulde), historical documentations, and multi-language accessibility across digital ecosystems."
+
+masthead:
+  founded_year: "siddiquetanvir"
+  edition: "V3"
+  location: "KUET — KHULNA, BANGLADESH"
