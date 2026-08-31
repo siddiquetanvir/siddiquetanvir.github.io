@@ -341,7 +341,38 @@
       list.appendChild(li);
     });
     section.appendChild(list);
+
+    const resumes = buildResumeDownloads(data);
+    if (resumes) section.appendChild(resumes);
+
     return section;
+  }
+
+  function buildResumeDownloads(data) {
+    const meta = data.metadata || {};
+    const tracks = meta.cv_focus_tracks || [];
+    if (tracks.length === 0) return null;
+
+    const wrap = el("div", "resume-downloads");
+    wrap.innerHTML = `<div class="resume-downloads__label">Tailored résumés</div>`;
+
+    const list = el("ul", "social-list resume-downloads__list");
+    const allEntries = [
+      { id: "master", label: "Complete Profile", cv_file: meta.master_cv_file || "cv_master.html" },
+      ...tracks,
+    ];
+    allEntries.forEach((t) => {
+      const li = document.createElement("li");
+      const a = document.createElement("a");
+      a.href = t.cv_file;
+      a.target = "_blank";
+      a.rel = "noopener noreferrer";
+      a.innerHTML = `<span>${escapeHtml(t.label || t.id)}</span><span class="arrow">&#8599;</span>`;
+      li.appendChild(a);
+      list.appendChild(li);
+    });
+    wrap.appendChild(list);
+    return wrap;
   }
 
   function buildFooter(data) {
@@ -365,18 +396,43 @@
    * Render + reveal-on-scroll
    * ------------------------------------------------------------------- */
 
+  // Maps each possible `nav` id (from data.yaml) to the builder that renders
+  // it. Adding/removing/reordering sections is now purely a data.yaml edit —
+  // render() no longer hardcodes a fixed sequence of appendChild calls.
+  const SECTION_BUILDERS = {
+    about: buildAbout,
+    impact: buildImpact,
+    skills: buildSkills,
+    projects: buildProjects,
+    experience: buildExperience,
+    education: buildEducation,
+    research: buildResearch,
+    contact: buildContact,
+  };
+
+  function buildViewBanner(data) {
+    if (!data.activeTrack) return null;
+    const banner = el("div", "view-banner");
+    banner.innerHTML = `
+      <span>Viewing tailored profile: <strong>${escapeHtml(data.activeTrack.label)}</strong></span>
+      <a href="${location.pathname}">See full profile &times;</a>
+    `;
+    return banner;
+  }
+
   function render(data) {
     const root = document.getElementById("app-root");
     root.innerHTML = "";
 
-    root.appendChild(buildAbout(data));
-    root.appendChild(buildImpact(data));
-    root.appendChild(buildSkills(data));
-    root.appendChild(buildProjects(data));
-    root.appendChild(buildExperience(data));
-    root.appendChild(buildEducation(data));
-    root.appendChild(buildResearch(data));
-    root.appendChild(buildContact(data));
+    const banner = buildViewBanner(data);
+    if (banner) root.appendChild(banner);
+
+    (data.nav || []).forEach((item) => {
+      const build = SECTION_BUILDERS[item.id];
+      if (!build) return; // unknown nav id in data.yaml — skip rather than fail
+      root.appendChild(build(data));
+    });
+
     root.appendChild(buildFooter(data));
 
     buildSideRail(data);
@@ -415,6 +471,27 @@
   }
 
   /* ---------------------------------------------------------------------
+   * ?view=<track> filtering — mirrors generate_cv.py's focus-tag filtering
+   * so the live site and the compiled CVs never fall out of sync.
+   * ------------------------------------------------------------------- */
+
+  function filterDataForView(data, viewId) {
+    if (!viewId || viewId === "master") return data;
+
+    const tracks = (data.metadata && data.metadata.cv_focus_tracks) || [];
+    const activeTrack = tracks.find((t) => t.id === viewId);
+    if (!activeTrack) return data; // unknown ?view= value — fail open, show everything
+
+    const matchesFocus = (item) => Array.isArray(item.focus) && item.focus.includes(viewId);
+
+    return Object.assign({}, data, {
+      experience: (data.experience || []).filter(matchesFocus),
+      featured_projects: (data.featured_projects || []).filter(matchesFocus),
+      activeTrack,
+    });
+  }
+
+  /* ---------------------------------------------------------------------
    * Boot
    * ------------------------------------------------------------------- */
 
@@ -428,7 +505,8 @@
       })
       .then((text) => {
         const data = jsyaml.load(text);
-        render(data);
+        const viewId = new URLSearchParams(window.location.search).get("view");
+        render(filterDataForView(data, viewId));
       })
       .catch((err) => {
         console.error(err);

@@ -21,6 +21,25 @@ nav:
   - id: "contact"
     label: "Contact"
 
+# Global switches for the CV-generation build engine (generate_cv.py) and the
+# on-site resume download links / ?view= filtering — a single source of truth
+# so track ids, labels, and output filenames never drift out of sync.
+metadata:
+  cv_focus_tracks:
+    - id: "dev"
+      label: "Software Engineering & Open-Source"
+      description: "Pywikibot automation, C/C++ systems foundations, and open-source framework architecture."
+      cv_file: "cv_dev.html"
+    - id: "data_science"
+      label: "Machine Learning & Data Science"
+      description: "Streamlit analytics apps, Project Korikath data pipelines, and applied NLP research."
+      cv_file: "cv_data_science.html"
+    - id: "academic"
+      label: "Academic & Institutional Leadership"
+      description: "Notre Dame English Club leadership and KUET academic coursework."
+      cv_file: "cv_academic.html"
+  master_cv_file: "cv_master.html"
+
 hero:
   name: "Tanvir Siddique"
   alias: "@TanvirSdq"
@@ -65,11 +84,13 @@ skills:
 featured_projects:
   - title: "Wikimedia Campaign Analytics"
     tags: ["Python", "Streamlit"]
+    focus: ["dev", "data_science"]
     description: "An interactive web app providing retention metrics and raw data visualization across open-knowledge initiatives."
     github: "https://github.com/siddiquetanvir/WebApp"
     streamlit: "https://wikistats.streamlit.app/"
   - title: "Wikipedia Bot & Categorization Framework"
     tags: ["JupyterLab", "Pywikibot"]
+    focus: ["dev"]
     description: "Custom Python framework (TanvirSdqBot) executing cross-wiki updates, user onboarding, and automated taxonomy management."
     github: "https://github.com/siddiquetanvir/TanvirSdqBot"
 
@@ -77,15 +98,25 @@ experience:
   - role: "Volunteer Contributor & Bot Operator"
     organization: "Wikimedia Ecosystem"
     period: "2022 — Present"
+    focus: ["dev"]
     bullets:
       - "Engineer automated Pywikibot scripts for cross-wiki maintenance."
       - "Maintain consistency across Wikipedia, Wikidata, and Wikimedia Commons."
   - role: "Technical & Data Lead"
     organization: "Project Korikath"
     period: "2023 — Present"
+    focus: ["dev", "data_science"]
     bullets:
       - "Manage technical infrastructure supporting campaign analytics."
       - "Build custom Python utility scripts for retention and reporting."
+  - role: "Director of Leadership & Management"
+    organization: "Notre Dame English Club"
+    period: "2023 — 2024"
+    focus: ["academic"]
+    bullets:
+      - "Directed leadership and management operations for the college's English-language club."
+      - "Organized language-enrichment events, debates, and peer-mentoring programs."
+      - "Coordinated logistics and member engagement across the academic year."
 
 education:
   degrees:
@@ -107,7 +138,6 @@ research_interests:
   description: "Worked on low-resource language preservation (Fulfulde, Basque), historical documentations, and multi-language accessibility across digital ecosystems."
 
 contact:
-  # TODO — replace with a real inbox before publishing.
   email: "siddiquetanvir27@gmail.com"
   socials:
     - label: "LinkedIn"
