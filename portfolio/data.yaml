@@ -37,15 +37,16 @@ hero:
   alias: "@TanvirSdq"
   status_badge: "CSE UNDERGRADUATE at KUET"
   headline: "Building CS Foundations & Open Source Automation"
-  bio: "First-year Computer Science & Engineering student at KUET. Building core programming foundations in C/C++ while automating open-data systems with Python."
+  bio: "First-year Computer Science & Engineering student at KUET. Building core programming foundations in C/C++ while automating open-data systems with Python. Actively learning about machine learning, natural language processing, and data visualization."
   tech_stack:
     - "C / C++"
     - "Python"
+    - "Machine Learning"
     - "Git & GitHub"
     - "Pywikibot"
 
 impact_metrics:
-  - number: "47,000+"
+  - number: "46,900+"
     label: "Automated Bot Edits"
   - number: "6,000+"
     label: "Manual Open-Source Contributions"
@@ -106,8 +107,7 @@ experience:
     period: "2023 — 2024"
     focus: ["academic"]
     bullets:
-      - "Directed leadership and management operations for the college's English-language club."
-      - "Organized language-enrichment events, debates, and peer-mentoring programs."
+      - "Participated in academic events, PET sessions, and workshops."
       - "Coordinated logistics and member engagement across the academic year."
 
 education:
