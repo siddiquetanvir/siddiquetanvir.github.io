@@ -498,7 +498,7 @@
   document.addEventListener("DOMContentLoaded", () => {
     initThemeToggle();
 
-    fetch(DATA_URL)
+    fetch(DATA_URL, { cache: "no-store" })
       .then((res) => {
         if (!res.ok) throw new Error(`HTTP ${res.status} while fetching ${DATA_URL}`);
         return res.text();

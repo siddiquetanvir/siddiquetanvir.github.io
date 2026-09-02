@@ -11,7 +11,14 @@
 
 <style>
   /* ==========================================================================
-     SCREEN — same editorial DNA as the live portfolio, single column.
+     SCREEN — same editorial DNA as the live portfolio.
+     Layout variant is toggled by [data-layout] on <body>:
+       "two-col"  — Master: education table + a 2-up grid for jobs/projects,
+                    echoing the reference CV's side-by-side card layout.
+       "one-col"  — Data Science & AI: single column throughout.
+     Both collapse to one column under the mobile breakpoint, and print
+     always forces one column regardless — see the ATS note near the
+     @media print block.
      ========================================================================== */
   :root {
     --bg-color: #F8F8F9;
@@ -36,9 +43,11 @@
     -webkit-font-smoothing: antialiased;
   }
   a { color: inherit; }
+  table { border-collapse: collapse; width: 100%; }
   ul { margin: 0; padding: 0; list-style: none; }
   h1, h2, h3, p { margin: 0; }
 
+  /* ---- sticky preview bar (screen only) ---- */
   .no-print {
     position: sticky;
     top: 0;
@@ -46,7 +55,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 16px;
+    gap: 12px 16px;
     flex-wrap: wrap;
     background: var(--text-primary);
     color: var(--bg-color);
@@ -56,7 +65,7 @@
     letter-spacing: 0.04em;
   }
   .no-print__track { opacity: 0.75; }
-  .no-print__actions { display: flex; gap: 10px; align-items: center; }
+  .no-print__actions { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
   .no-print button,
   .no-print a.back-link {
     font-family: var(--font-mono);
@@ -77,30 +86,42 @@
     color: #fff;
   }
 
+  /* ---- page shell ---- */
   .cv-page {
-    max-width: 780px;
+    max-width: 900px;
     margin: 0 auto;
     background: var(--card-bg);
-    padding: clamp(32px, 6vw, 64px);
+    border-top: 3px solid var(--accent-color);
+    padding: clamp(28px, 5vw, 56px);
   }
 
-  .cv-header { border-bottom: 2px solid var(--text-primary); padding-bottom: 24px; margin-bottom: 32px; }
+  .cv-header { border-bottom: 2px solid var(--text-primary); padding-bottom: 22px; margin-bottom: 28px; }
   .cv-name {
     font-family: var(--font-display);
     font-weight: 900;
-    font-size: clamp(30px, 5vw, 44px);
+    font-size: clamp(28px, 4.6vw, 42px);
     letter-spacing: -0.01em;
   }
+  .cv-role {
+    margin-top: 4px;
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--text-secondary);
+  }
   .cv-track {
-    margin-top: 6px;
+    margin-top: 8px;
+    display: inline-block;
     font-family: var(--font-mono);
-    font-size: 12px;
+    font-size: 11px;
     letter-spacing: 0.08em;
     text-transform: uppercase;
     color: var(--accent-color);
+    border: 1px solid var(--accent-color);
+    padding: 3px 9px;
   }
   .cv-contact-line {
-    margin-top: 14px;
+    margin-top: 16px;
     display: flex;
     flex-wrap: wrap;
     gap: 6px 14px;
@@ -110,43 +131,105 @@
   }
   .cv-contact-line a { text-decoration: underline; text-underline-offset: 3px; }
 
-  .cv-section { margin-top: 32px; }
+  /* ---- impact stat row ---- */
+  .cv-impact {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 28px;
+    margin-bottom: 30px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--border-color);
+  }
+  .cv-impact__item { min-width: 120px; }
+  .cv-impact__num {
+    display: block;
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 19px;
+    color: var(--accent-color);
+  }
+  .cv-impact__label {
+    display: block;
+    font-size: 11px;
+    letter-spacing: 0.02em;
+    color: var(--text-secondary);
+  }
+
+  /* ---- sections ---- */
+  .cv-section { margin-top: 30px; }
+  .cv-section:first-of-type { margin-top: 0; }
   .cv-section__title {
     font-family: var(--font-mono);
     font-size: 12px;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
     color: var(--accent-color);
-    border-bottom: 1px solid var(--border-color);
+    border-bottom: 2px solid var(--accent-color);
     padding-bottom: 8px;
-    margin-bottom: 16px;
+    margin-bottom: 18px;
   }
 
-  .cv-bio { color: var(--text-secondary); max-width: 68ch; }
+  .cv-bio { color: var(--text-secondary); max-width: 74ch; }
 
-  .cv-skills-row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px; }
+  /* ---- education table ---- */
+  .cv-edu-table th {
+    text-align: left;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    border-bottom: 1px solid var(--text-primary);
+    padding: 0 12px 8px 0;
+  }
+  .cv-edu-table td {
+    vertical-align: top;
+    padding: 12px 12px 12px 0;
+    border-bottom: 1px solid var(--border-color);
+    font-size: 14px;
+  }
+  .cv-edu-table td:first-child {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--accent-color);
+    white-space: nowrap;
+    width: 1%;
+  }
+  .cv-edu-table .cv-edu-degree { font-family: var(--font-display); font-weight: 700; font-size: 15px; }
+  .cv-edu-table .cv-edu-details { margin-top: 3px; color: var(--text-secondary); font-size: 13px; }
+
+  /* ---- skills ---- */
+  .cv-skills-row { display: flex; gap: 8px; margin-top: 8px; }
   .cv-skills-row:first-child { margin-top: 0; }
   .cv-skills-row dt {
     font-family: var(--font-mono);
     font-size: 11px;
     text-transform: uppercase;
     color: var(--text-secondary);
-    width: 160px;
+    width: 170px;
     flex-shrink: 0;
   }
   .cv-skills-row dd { margin: 0; font-size: 14px; }
 
-  .cv-card { page-break-inside: avoid; break-inside: avoid; margin-bottom: 22px; }
-  .cv-card:last-child { margin-bottom: 0; }
+  /* ---- card grid (Experience / Projects) ---- */
+  .cv-grid { display: grid; grid-template-columns: 1fr; gap: 20px 32px; }
+  [data-layout="two-col"] .cv-grid { grid-template-columns: 1fr 1fr; }
+
+  .cv-card {
+    page-break-inside: avoid;
+    break-inside: avoid;
+    border-left: 2px solid var(--border-color);
+    padding-left: 14px;
+  }
   .cv-card__row {
     display: flex;
     justify-content: space-between;
     align-items: baseline;
-    gap: 12px;
+    gap: 10px;
     flex-wrap: wrap;
   }
-  .cv-card__title { font-family: var(--font-display); font-weight: 700; font-size: 18px; }
-  .cv-card__period { font-family: var(--font-mono); font-size: 11px; color: var(--accent-color); white-space: nowrap; }
+  .cv-card__title { font-family: var(--font-display); font-weight: 700; font-size: 17px; }
+  .cv-card__period { font-family: var(--font-mono); font-size: 10px; color: var(--accent-color); white-space: nowrap; }
   .cv-card__subtitle {
     margin-top: 2px;
     font-family: var(--font-mono);
@@ -164,23 +247,19 @@
     border: 1px solid var(--border-color);
     padding: 2px 8px;
   }
-  .cv-card__desc { margin-top: 8px; font-size: 14px; color: var(--text-secondary); max-width: 66ch; }
+  .cv-card__desc { margin-top: 8px; font-size: 13.5px; color: var(--text-secondary); }
   .cv-card__links { margin-top: 6px; display: flex; gap: 14px; flex-wrap: wrap; font-family: var(--font-mono); font-size: 11px; }
   .cv-card__links a { text-decoration: underline; text-underline-offset: 3px; }
   .cv-bullets { margin-top: 8px; display: flex; flex-direction: column; gap: 4px; }
   .cv-bullets li {
     position: relative;
     padding-left: 16px;
-    font-size: 14px;
+    font-size: 13.5px;
     color: var(--text-secondary);
   }
   .cv-bullets li::before { content: "—"; position: absolute; left: 0; color: var(--accent-color); }
 
-  .cv-empty-note {
-    font-size: 13px;
-    color: var(--text-secondary);
-    font-style: italic;
-  }
+  .cv-empty-note { font-size: 13px; color: var(--text-secondary); font-style: italic; }
 
   .cv-footer {
     margin-top: 40px;
@@ -196,8 +275,51 @@
   }
 
   /* ==========================================================================
+     MOBILE — declutters both layout variants: stacks the header line,
+     collapses the two-up grid to one column, and lets cards/skills stack
+     instead of squeezing into fixed-width columns.
+     ========================================================================== */
+  @media (max-width: 720px) {
+    .cv-page { padding: 24px 18px; }
+    .cv-name { font-size: 26px; }
+
+    .no-print { flex-direction: column; align-items: flex-start; gap: 10px; }
+    .no-print__actions { width: 100%; justify-content: space-between; }
+
+    .cv-contact-line { flex-direction: column; gap: 6px; }
+    .cv-contact-line .sep { display: none; }
+
+    .cv-impact { gap: 14px 22px; }
+
+    .cv-grid { grid-template-columns: 1fr !important; }
+
+    .cv-card__row { flex-direction: column; align-items: flex-start; gap: 2px; }
+
+    .cv-skills-row { flex-direction: column; gap: 3px; }
+    .cv-skills-row dt { width: auto; }
+
+    .cv-edu-table, .cv-edu-table tbody, .cv-edu-table tr, .cv-edu-table td {
+      display: block;
+      width: 100%;
+    }
+    .cv-edu-table thead { display: none; }
+    .cv-edu-table tr { padding: 12px 0; border-bottom: 1px solid var(--border-color); }
+    .cv-edu-table td { border-bottom: none; padding: 2px 0; }
+    .cv-edu-table td:first-child { width: auto; }
+  }
+
+  /* ==========================================================================
      PRINT — strict ATS-friendly overrides. This is what actually determines
      the exported PDF when someone uses the browser's Print / Save-as-PDF.
+
+     Note: the grid is forced back to a single column here regardless of
+     [data-layout]. Two-column text is a well-known way to scramble ATS
+     parsers — most read left-to-right across the full page width rather
+     than column-by-column, which interleaves unrelated lines. (You can see
+     this exact failure mode in how a two-column PDF resume gets extracted
+     as plain text — the reading order comes out shuffled.) The two-column
+     look stays as a screen/portfolio nicety; what actually gets submitted
+     to an ATS stays safely single-column.
      ========================================================================== */
   @media print {
     body { background: #ffffff !important; color: #000000 !important; font-size: 10pt; line-height: 1.4; }
@@ -205,19 +327,26 @@
 
     * { font-family: Arial, Helvetica, sans-serif !important; }
 
-    .cv-page { max-width: none; padding: 0; }
+    .cv-page { max-width: none; padding: 0; border-top: none; }
     .cv-header { border-bottom: 1.5pt solid #000; }
     .cv-name { font-size: 20pt; }
+    .cv-role,
     .cv-track,
     .cv-section__title,
     .cv-card__period,
     .cv-card__subtitle,
     .cv-card__tag,
     .cv-card__links,
-    .cv-footer { color: #000 !important; }
+    .cv-impact__num,
+    .cv-impact__label,
+    .cv-footer { color: #000 !important; border-color: #000 !important; }
     .cv-bio,
     .cv-card__desc,
-    .cv-bullets li { color: #000 !important; }
+    .cv-bullets li,
+    .cv-edu-details { color: #000 !important; }
+
+    .cv-grid { grid-template-columns: 1fr !important; column-gap: 0 !important; }
+    .cv-card { border-left-color: #000 !important; }
 
     .cv-card,
     .cv-section { page-break-inside: avoid; break-inside: avoid; }
@@ -232,14 +361,14 @@
       color: #444444 !important;
     }
 
-    @page { margin: 18mm 16mm; }
+    @page { margin: 16mm 15mm; }
   }
 </style>
 </head>
-<body>
+<body data-layout="{{ 'two-col' if track.id == 'master' else 'one-col' }}">
 
 <div class="no-print">
-  <span class="no-print__track">Previewing: {{ track.label }}{% if track.description %} — {{ track.description }}{% endif %}</span>
+  <span class="no-print__track">Previewing: {{ track.label }}</span>
   <span class="no-print__actions">
     <a class="back-link" href="index.html">&larr; Back to portfolio</a>
     <button type="button" onclick="window.print()">Print / Save as PDF</button>
@@ -250,18 +379,53 @@
 
   <header class="cv-header">
     <h1 class="cv-name">{{ hero.name }}</h1>
-    <div class="cv-track">{{ track.label }}</div>
+    {% if hero.status_badge %}<div class="cv-role">{{ hero.status_badge }}</div>{% endif %}
+    <div class="cv-track">
+      {{ track.label }}{% if track.id != 'master' and track.description %} — {{ track.description }}{% endif %}
+    </div>
     <div class="cv-contact-line">
       {% if contact.email %}<a href="mailto:{{ contact.email }}">{{ contact.email }}</a>{% endif %}
-      {% for s in contact.socials %}<span>&middot;</span><a href="{{ s.url }}" target="_blank" rel="noopener noreferrer">{{ s.label }}</a>{% endfor %}
-      {% if site.location %}<span>&middot;</span><span>{{ site.location }}</span>{% endif %}
+      {% for s in contact.socials %}<span class="sep">&middot;</span><a href="{{ s.url }}" target="_blank" rel="noopener noreferrer">{{ s.label }}</a>{% endfor %}
+      {% if site.location %}<span class="sep">&middot;</span><span>{{ site.location }}</span>{% endif %}
     </div>
   </header>
+
+  {% if impact_metrics %}
+  <div class="cv-impact">
+    {% for m in impact_metrics %}
+    <div class="cv-impact__item">
+      <span class="cv-impact__num">{{ m.number }}</span>
+      <span class="cv-impact__label">{{ m.label }}</span>
+    </div>
+    {% endfor %}
+  </div>
+  {% endif %}
 
   {% if hero.bio %}
   <section class="cv-section">
     <div class="cv-section__title">Summary</div>
     <p class="cv-bio">{{ hero.bio }}</p>
+  </section>
+  {% endif %}
+
+  {% if education and education.degrees %}
+  <section class="cv-section">
+    <div class="cv-section__title">Education</div>
+    <table class="cv-edu-table">
+      <thead><tr><th>Period</th><th>Degree</th><th>Institution</th></tr></thead>
+      <tbody>
+        {% for d in education.degrees %}
+        <tr>
+          <td>{{ d.period }}</td>
+          <td>
+            <div class="cv-edu-degree">{{ d.degree }}</div>
+            {% if d.details %}<div class="cv-edu-details">{{ d.details }}</div>{% endif %}
+          </td>
+          <td>{{ d.institution }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
   </section>
   {% endif %}
 
@@ -280,8 +444,9 @@
   {% endif %}
 
   <section class="cv-section">
-    <div class="cv-section__title">Experience{% if track.id != 'master' %} — {{ track.label }}{% endif %}</div>
+    <div class="cv-section__title">Experience</div>
     {% if experience %}
+    <div class="cv-grid">
       {% for job in experience %}
       <article class="cv-card">
         <div class="cv-card__row">
@@ -296,14 +461,16 @@
         {% endif %}
       </article>
       {% endfor %}
+    </div>
     {% else %}
       <p class="cv-empty-note">No experience entries are tagged for this focus track yet.</p>
     {% endif %}
   </section>
 
   <section class="cv-section">
-    <div class="cv-section__title">Projects{% if track.id != 'master' %} — {{ track.label }}{% endif %}</div>
+    <div class="cv-section__title">Projects</div>
     {% if featured_projects %}
+    <div class="cv-grid">
       {% for p in featured_projects %}
       <article class="cv-card">
         <div class="cv-card__row">
@@ -323,39 +490,26 @@
         {% endif %}
       </article>
       {% endfor %}
+    </div>
     {% else %}
       <p class="cv-empty-note">No projects are tagged for this focus track yet.</p>
     {% endif %}
   </section>
 
-  {% if education and education.degrees %}
-  <section class="cv-section">
-    <div class="cv-section__title">Education</div>
-    {% for d in education.degrees %}
-    <article class="cv-card">
-      <div class="cv-card__row">
-        <span class="cv-card__title">{{ d.degree }}</span>
-        {% if d.period %}<span class="cv-card__period">{{ d.period }}</span>{% endif %}
-      </div>
-      <div class="cv-card__subtitle">{{ d.institution }}</div>
-      {% if d.details %}<p class="cv-card__desc">{{ d.details }}</p>{% endif %}
-    </article>
-    {% endfor %}
-  </section>
-  {% endif %}
-
   {% if education and education.certifications %}
   <section class="cv-section">
     <div class="cv-section__title">Certifications &amp; Programs</div>
-    {% for c in education.certifications %}
-    <article class="cv-card">
-      <div class="cv-card__row">
-        <span class="cv-card__title">{{ c.name }}</span>
-        {% if c.year %}<span class="cv-card__period">{{ c.year }}</span>{% endif %}
-      </div>
-      {% if c.issuer %}<div class="cv-card__subtitle">{{ c.issuer }}</div>{% endif %}
-    </article>
-    {% endfor %}
+    <div class="cv-grid">
+      {% for c in education.certifications %}
+      <article class="cv-card">
+        <div class="cv-card__row">
+          <span class="cv-card__title">{{ c.name }}</span>
+          {% if c.year %}<span class="cv-card__period">{{ c.year }}</span>{% endif %}
+        </div>
+        {% if c.issuer %}<div class="cv-card__subtitle">{{ c.issuer }}</div>{% endif %}
+      </article>
+      {% endfor %}
+    </div>
   </section>
   {% endif %}
 

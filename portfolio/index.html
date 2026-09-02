@@ -23,7 +23,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,900;1,500;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="styles.css">
+<!-- Bump ?v= on every deploy that changes styles.css/script.js — without it,
+     some mobile browsers keep serving a stale cached copy after an update. -->
+<link rel="stylesheet" href="styles.css?v=4">
 </head>
 <body>
 
@@ -53,6 +55,6 @@
 </main>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.min.js"></script>
-<script src="script.js"></script>
+<script src="script.js?v=4"></script>
 </body>
 </html>

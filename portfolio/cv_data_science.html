@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tanvir Siddique — Machine Learning &amp; Data Science CV</title>
+<title>Tanvir Siddique — Data Science &amp; Artificial Intelligence CV</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,7 +11,14 @@
 
 <style>
   /* ==========================================================================
-     SCREEN — same editorial DNA as the live portfolio, single column.
+     SCREEN — same editorial DNA as the live portfolio.
+     Layout variant is toggled by [data-layout] on <body>:
+       "two-col"  — Master: education table + a 2-up grid for jobs/projects,
+                    echoing the reference CV's side-by-side card layout.
+       "one-col"  — Data Science & AI: single column throughout.
+     Both collapse to one column under the mobile breakpoint, and print
+     always forces one column regardless — see the ATS note near the
+     @media print block.
      ========================================================================== */
   :root {
     --bg-color: #F8F8F9;
@@ -36,9 +43,11 @@
     -webkit-font-smoothing: antialiased;
   }
   a { color: inherit; }
+  table { border-collapse: collapse; width: 100%; }
   ul { margin: 0; padding: 0; list-style: none; }
   h1, h2, h3, p { margin: 0; }
 
+  /* ---- sticky preview bar (screen only) ---- */
   .no-print {
     position: sticky;
     top: 0;
@@ -46,7 +55,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 16px;
+    gap: 12px 16px;
     flex-wrap: wrap;
     background: var(--text-primary);
     color: var(--bg-color);
@@ -56,7 +65,7 @@
     letter-spacing: 0.04em;
   }
   .no-print__track { opacity: 0.75; }
-  .no-print__actions { display: flex; gap: 10px; align-items: center; }
+  .no-print__actions { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
   .no-print button,
   .no-print a.back-link {
     font-family: var(--font-mono);
@@ -77,30 +86,42 @@
     color: #fff;
   }
 
+  /* ---- page shell ---- */
   .cv-page {
-    max-width: 780px;
+    max-width: 900px;
     margin: 0 auto;
     background: var(--card-bg);
-    padding: clamp(32px, 6vw, 64px);
+    border-top: 3px solid var(--accent-color);
+    padding: clamp(28px, 5vw, 56px);
   }
 
-  .cv-header { border-bottom: 2px solid var(--text-primary); padding-bottom: 24px; margin-bottom: 32px; }
+  .cv-header { border-bottom: 2px solid var(--text-primary); padding-bottom: 22px; margin-bottom: 28px; }
   .cv-name {
     font-family: var(--font-display);
     font-weight: 900;
-    font-size: clamp(30px, 5vw, 44px);
+    font-size: clamp(28px, 4.6vw, 42px);
     letter-spacing: -0.01em;
   }
+  .cv-role {
+    margin-top: 4px;
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--text-secondary);
+  }
   .cv-track {
-    margin-top: 6px;
+    margin-top: 8px;
+    display: inline-block;
     font-family: var(--font-mono);
-    font-size: 12px;
+    font-size: 11px;
     letter-spacing: 0.08em;
     text-transform: uppercase;
     color: var(--accent-color);
+    border: 1px solid var(--accent-color);
+    padding: 3px 9px;
   }
   .cv-contact-line {
-    margin-top: 14px;
+    margin-top: 16px;
     display: flex;
     flex-wrap: wrap;
     gap: 6px 14px;
@@ -110,43 +131,105 @@
   }
   .cv-contact-line a { text-decoration: underline; text-underline-offset: 3px; }
 
-  .cv-section { margin-top: 32px; }
+  /* ---- impact stat row ---- */
+  .cv-impact {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 28px;
+    margin-bottom: 30px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--border-color);
+  }
+  .cv-impact__item { min-width: 120px; }
+  .cv-impact__num {
+    display: block;
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 19px;
+    color: var(--accent-color);
+  }
+  .cv-impact__label {
+    display: block;
+    font-size: 11px;
+    letter-spacing: 0.02em;
+    color: var(--text-secondary);
+  }
+
+  /* ---- sections ---- */
+  .cv-section { margin-top: 30px; }
+  .cv-section:first-of-type { margin-top: 0; }
   .cv-section__title {
     font-family: var(--font-mono);
     font-size: 12px;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
     color: var(--accent-color);
-    border-bottom: 1px solid var(--border-color);
+    border-bottom: 2px solid var(--accent-color);
     padding-bottom: 8px;
-    margin-bottom: 16px;
+    margin-bottom: 18px;
   }
 
-  .cv-bio { color: var(--text-secondary); max-width: 68ch; }
+  .cv-bio { color: var(--text-secondary); max-width: 74ch; }
 
-  .cv-skills-row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px; }
+  /* ---- education table ---- */
+  .cv-edu-table th {
+    text-align: left;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    border-bottom: 1px solid var(--text-primary);
+    padding: 0 12px 8px 0;
+  }
+  .cv-edu-table td {
+    vertical-align: top;
+    padding: 12px 12px 12px 0;
+    border-bottom: 1px solid var(--border-color);
+    font-size: 14px;
+  }
+  .cv-edu-table td:first-child {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--accent-color);
+    white-space: nowrap;
+    width: 1%;
+  }
+  .cv-edu-table .cv-edu-degree { font-family: var(--font-display); font-weight: 700; font-size: 15px; }
+  .cv-edu-table .cv-edu-details { margin-top: 3px; color: var(--text-secondary); font-size: 13px; }
+
+  /* ---- skills ---- */
+  .cv-skills-row { display: flex; gap: 8px; margin-top: 8px; }
   .cv-skills-row:first-child { margin-top: 0; }
   .cv-skills-row dt {
     font-family: var(--font-mono);
     font-size: 11px;
     text-transform: uppercase;
     color: var(--text-secondary);
-    width: 160px;
+    width: 170px;
     flex-shrink: 0;
   }
   .cv-skills-row dd { margin: 0; font-size: 14px; }
 
-  .cv-card { page-break-inside: avoid; break-inside: avoid; margin-bottom: 22px; }
-  .cv-card:last-child { margin-bottom: 0; }
+  /* ---- card grid (Experience / Projects) ---- */
+  .cv-grid { display: grid; grid-template-columns: 1fr; gap: 20px 32px; }
+  [data-layout="two-col"] .cv-grid { grid-template-columns: 1fr 1fr; }
+
+  .cv-card {
+    page-break-inside: avoid;
+    break-inside: avoid;
+    border-left: 2px solid var(--border-color);
+    padding-left: 14px;
+  }
   .cv-card__row {
     display: flex;
     justify-content: space-between;
     align-items: baseline;
-    gap: 12px;
+    gap: 10px;
     flex-wrap: wrap;
   }
-  .cv-card__title { font-family: var(--font-display); font-weight: 700; font-size: 18px; }
-  .cv-card__period { font-family: var(--font-mono); font-size: 11px; color: var(--accent-color); white-space: nowrap; }
+  .cv-card__title { font-family: var(--font-display); font-weight: 700; font-size: 17px; }
+  .cv-card__period { font-family: var(--font-mono); font-size: 10px; color: var(--accent-color); white-space: nowrap; }
   .cv-card__subtitle {
     margin-top: 2px;
     font-family: var(--font-mono);
@@ -164,23 +247,19 @@
     border: 1px solid var(--border-color);
     padding: 2px 8px;
   }
-  .cv-card__desc { margin-top: 8px; font-size: 14px; color: var(--text-secondary); max-width: 66ch; }
+  .cv-card__desc { margin-top: 8px; font-size: 13.5px; color: var(--text-secondary); }
   .cv-card__links { margin-top: 6px; display: flex; gap: 14px; flex-wrap: wrap; font-family: var(--font-mono); font-size: 11px; }
   .cv-card__links a { text-decoration: underline; text-underline-offset: 3px; }
   .cv-bullets { margin-top: 8px; display: flex; flex-direction: column; gap: 4px; }
   .cv-bullets li {
     position: relative;
     padding-left: 16px;
-    font-size: 14px;
+    font-size: 13.5px;
     color: var(--text-secondary);
   }
   .cv-bullets li::before { content: "—"; position: absolute; left: 0; color: var(--accent-color); }
 
-  .cv-empty-note {
-    font-size: 13px;
-    color: var(--text-secondary);
-    font-style: italic;
-  }
+  .cv-empty-note { font-size: 13px; color: var(--text-secondary); font-style: italic; }
 
   .cv-footer {
     margin-top: 40px;
@@ -196,8 +275,51 @@
   }
 
   /* ==========================================================================
+     MOBILE — declutters both layout variants: stacks the header line,
+     collapses the two-up grid to one column, and lets cards/skills stack
+     instead of squeezing into fixed-width columns.
+     ========================================================================== */
+  @media (max-width: 720px) {
+    .cv-page { padding: 24px 18px; }
+    .cv-name { font-size: 26px; }
+
+    .no-print { flex-direction: column; align-items: flex-start; gap: 10px; }
+    .no-print__actions { width: 100%; justify-content: space-between; }
+
+    .cv-contact-line { flex-direction: column; gap: 6px; }
+    .cv-contact-line .sep { display: none; }
+
+    .cv-impact { gap: 14px 22px; }
+
+    .cv-grid { grid-template-columns: 1fr !important; }
+
+    .cv-card__row { flex-direction: column; align-items: flex-start; gap: 2px; }
+
+    .cv-skills-row { flex-direction: column; gap: 3px; }
+    .cv-skills-row dt { width: auto; }
+
+    .cv-edu-table, .cv-edu-table tbody, .cv-edu-table tr, .cv-edu-table td {
+      display: block;
+      width: 100%;
+    }
+    .cv-edu-table thead { display: none; }
+    .cv-edu-table tr { padding: 12px 0; border-bottom: 1px solid var(--border-color); }
+    .cv-edu-table td { border-bottom: none; padding: 2px 0; }
+    .cv-edu-table td:first-child { width: auto; }
+  }
+
+  /* ==========================================================================
      PRINT — strict ATS-friendly overrides. This is what actually determines
      the exported PDF when someone uses the browser's Print / Save-as-PDF.
+
+     Note: the grid is forced back to a single column here regardless of
+     [data-layout]. Two-column text is a well-known way to scramble ATS
+     parsers — most read left-to-right across the full page width rather
+     than column-by-column, which interleaves unrelated lines. (You can see
+     this exact failure mode in how a two-column PDF resume gets extracted
+     as plain text — the reading order comes out shuffled.) The two-column
+     look stays as a screen/portfolio nicety; what actually gets submitted
+     to an ATS stays safely single-column.
      ========================================================================== */
   @media print {
     body { background: #ffffff !important; color: #000000 !important; font-size: 10pt; line-height: 1.4; }
@@ -205,19 +327,26 @@
 
     * { font-family: Arial, Helvetica, sans-serif !important; }
 
-    .cv-page { max-width: none; padding: 0; }
+    .cv-page { max-width: none; padding: 0; border-top: none; }
     .cv-header { border-bottom: 1.5pt solid #000; }
     .cv-name { font-size: 20pt; }
+    .cv-role,
     .cv-track,
     .cv-section__title,
     .cv-card__period,
     .cv-card__subtitle,
     .cv-card__tag,
     .cv-card__links,
-    .cv-footer { color: #000 !important; }
+    .cv-impact__num,
+    .cv-impact__label,
+    .cv-footer { color: #000 !important; border-color: #000 !important; }
     .cv-bio,
     .cv-card__desc,
-    .cv-bullets li { color: #000 !important; }
+    .cv-bullets li,
+    .cv-edu-details { color: #000 !important; }
+
+    .cv-grid { grid-template-columns: 1fr !important; column-gap: 0 !important; }
+    .cv-card { border-left-color: #000 !important; }
 
     .cv-card,
     .cv-section { page-break-inside: avoid; break-inside: avoid; }
@@ -232,14 +361,14 @@
       color: #444444 !important;
     }
 
-    @page { margin: 18mm 16mm; }
+    @page { margin: 16mm 15mm; }
   }
 </style>
 </head>
-<body>
+<body data-layout="one-col">
 
 <div class="no-print">
-  <span class="no-print__track">Previewing: Machine Learning &amp; Data Science — Streamlit analytics apps, Project Korikath data pipelines, and applied NLP research.</span>
+  <span class="no-print__track">Previewing: Data Science &amp; Artificial Intelligence</span>
   <span class="no-print__actions">
     <a class="back-link" href="index.html">&larr; Back to portfolio</a>
     <button type="button" onclick="window.print()">Print / Save as PDF</button>
@@ -250,14 +379,57 @@
 
   <header class="cv-header">
     <h1 class="cv-name">Tanvir Siddique</h1>
-    <div class="cv-track">Machine Learning &amp; Data Science</div>
+<div class="cv-role">CSE UNDERGRADUATE at KUET</div>    <div class="cv-track">
+      Data Science &amp; Artificial Intelligence — Automation frameworks, applied data pipelines, and analytics tooling across Wikimedia and Project Korikath.    </div>
     <div class="cv-contact-line">
-<a href="mailto:siddiquetanvir27@gmail.com">siddiquetanvir27@gmail.com</a><span>&middot;</span><a href="https://www.linkedin.com/in/tanvirsdq" target="_blank" rel="noopener noreferrer">LinkedIn</a><span>&middot;</span><a href="https://github.com/siddiquetanvir" target="_blank" rel="noopener noreferrer">GitHub</a><span>&middot;</span><a href="https://meta.wikimedia.org/wiki/User:TanvirSdq" target="_blank" rel="noopener noreferrer">Wikimedia</a><span>&middot;</span><span>KUET — Khulna, Bangladesh</span>    </div>
+<a href="mailto:siddiquetanvir27@gmail.com">siddiquetanvir27@gmail.com</a><span class="sep">&middot;</span><a href="https://www.linkedin.com/in/tanvirsdq" target="_blank" rel="noopener noreferrer">LinkedIn</a><span class="sep">&middot;</span><a href="https://github.com/siddiquetanvir" target="_blank" rel="noopener noreferrer">GitHub</a><span class="sep">&middot;</span><a href="https://meta.wikimedia.org/wiki/User:TanvirSdq" target="_blank" rel="noopener noreferrer">Wikimedia</a><span class="sep">&middot;</span><span>KUET — Khulna, Bangladesh</span>    </div>
   </header>
+
+  <div class="cv-impact">
+    <div class="cv-impact__item">
+      <span class="cv-impact__num">47,000+</span>
+      <span class="cv-impact__label">Automated Bot Edits</span>
+    </div>
+    <div class="cv-impact__item">
+      <span class="cv-impact__num">6,000+</span>
+      <span class="cv-impact__label">Manual Open-Source Contributions</span>
+    </div>
+    <div class="cv-impact__item">
+      <span class="cv-impact__num">15,800+</span>
+      <span class="cv-impact__label">Media Files Categorized</span>
+    </div>
+    <div class="cv-impact__item">
+      <span class="cv-impact__num">10,000+</span>
+      <span class="cv-impact__label">Articles Structured</span>
+    </div>
+  </div>
 
   <section class="cv-section">
     <div class="cv-section__title">Summary</div>
     <p class="cv-bio">First-year Computer Science &amp; Engineering student at KUET. Building core programming foundations in C/C++ while automating open-data systems with Python.</p>
+  </section>
+
+  <section class="cv-section">
+    <div class="cv-section__title">Education</div>
+    <table class="cv-edu-table">
+      <thead><tr><th>Period</th><th>Degree</th><th>Institution</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>2026 — Present</td>
+          <td>
+            <div class="cv-edu-degree">B.Sc. in Computer Science &amp; Engineering</div>
+<div class="cv-edu-details">Undergraduate coursework in algorithms, systems programming, and software engineering fundamentals.</div>          </td>
+          <td>Khulna University of Engineering &amp; Technology (KUET)</td>
+        </tr>
+        <tr>
+          <td>2023 — 2025</td>
+          <td>
+            <div class="cv-edu-degree">Higher Secondary Certificate</div>
+<div class="cv-edu-details">Science</div>          </td>
+          <td>Notre Dame College, Dhaka</td>
+        </tr>
+      </tbody>
+    </table>
   </section>
 
   <section class="cv-section">
@@ -279,7 +451,17 @@
   </section>
 
   <section class="cv-section">
-    <div class="cv-section__title">Experience — Machine Learning &amp; Data Science</div>
+    <div class="cv-section__title">Experience</div>
+    <div class="cv-grid">
+      <article class="cv-card">
+        <div class="cv-card__row">
+          <span class="cv-card__title">Volunteer Contributor &amp; Bot Operator</span>
+          <span class="cv-card__period">2022 — Present</span>
+        </div>
+        <div class="cv-card__subtitle">Wikimedia Ecosystem</div>
+        <ul class="cv-bullets">
+<li>Engineer automated Pywikibot scripts for cross-wiki maintenance.</li><li>Maintain consistency across Wikipedia, Wikidata, and Wikimedia Commons.</li>        </ul>
+      </article>
       <article class="cv-card">
         <div class="cv-card__row">
           <span class="cv-card__title">Technical &amp; Data Lead</span>
@@ -289,10 +471,12 @@
         <ul class="cv-bullets">
 <li>Manage technical infrastructure supporting campaign analytics.</li><li>Build custom Python utility scripts for retention and reporting.</li>        </ul>
       </article>
+    </div>
   </section>
 
   <section class="cv-section">
-    <div class="cv-section__title">Projects — Machine Learning &amp; Data Science</div>
+    <div class="cv-section__title">Projects</div>
+    <div class="cv-grid">
       <article class="cv-card">
         <div class="cv-card__row">
           <span class="cv-card__title">Wikimedia Campaign Analytics</span>
@@ -302,22 +486,16 @@
 <p class="cv-card__desc">An interactive web app providing retention metrics and raw data visualization across open-knowledge initiatives.</p>        <div class="cv-card__links">
 <a href="https://github.com/siddiquetanvir/WebApp" target="_blank" rel="noopener noreferrer">GitHub</a><a href="https://wikistats.streamlit.app/" target="_blank" rel="noopener noreferrer">Live App</a>        </div>
       </article>
-  </section>
-
-  <section class="cv-section">
-    <div class="cv-section__title">Education</div>
-    <article class="cv-card">
-      <div class="cv-card__row">
-        <span class="cv-card__title">B.Sc. in Computer Science &amp; Engineering</span>
-<span class="cv-card__period">2026 — Present</span>      </div>
-      <div class="cv-card__subtitle">Khulna University of Engineering &amp; Technology (KUET)</div>
-<p class="cv-card__desc">Undergraduate coursework in algorithms, systems programming, and software engineering fundamentals.</p>    </article>
-    <article class="cv-card">
-      <div class="cv-card__row">
-        <span class="cv-card__title">Higher Secondary Certificate</span>
-<span class="cv-card__period">2023 — 2025</span>      </div>
-      <div class="cv-card__subtitle">Notre Dame College, Dhaka</div>
-<p class="cv-card__desc">Science</p>    </article>
+      <article class="cv-card">
+        <div class="cv-card__row">
+          <span class="cv-card__title">Wikipedia Bot &amp; Categorization Framework</span>
+        </div>
+        <div class="cv-card__tags">
+<span class="cv-card__tag">JupyterLab</span><span class="cv-card__tag">Pywikibot</span>        </div>
+<p class="cv-card__desc">Custom Python framework (TanvirSdqBot) executing cross-wiki updates, user onboarding, and automated taxonomy management.</p>        <div class="cv-card__links">
+<a href="https://github.com/siddiquetanvir/TanvirSdqBot" target="_blank" rel="noopener noreferrer">GitHub</a>        </div>
+      </article>
+    </div>
   </section>
 
 
@@ -328,7 +506,7 @@
   </section>
 
   <div class="cv-footer">
-    <span>V4 &middot; Compiled August 31, 2026</span>
+    <span>V4 &middot; Compiled September 02, 2026</span>
     <span>Full profile: KUET — Khulna, Bangladesh</span>
   </div>
 

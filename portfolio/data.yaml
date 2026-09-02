@@ -26,18 +26,10 @@ nav:
 # so track ids, labels, and output filenames never drift out of sync.
 metadata:
   cv_focus_tracks:
-    - id: "dev"
-      label: "Software Engineering & Open-Source"
-      description: "Pywikibot automation, C/C++ systems foundations, and open-source framework architecture."
-      cv_file: "cv_dev.html"
     - id: "data_science"
-      label: "Machine Learning & Data Science"
-      description: "Streamlit analytics apps, Project Korikath data pipelines, and applied NLP research."
+      label: "Data Science & Artificial Intelligence"
+      description: "Automation frameworks, applied data pipelines, and analytics tooling across Wikimedia and Project Korikath."
       cv_file: "cv_data_science.html"
-    - id: "academic"
-      label: "Academic & Institutional Leadership"
-      description: "Notre Dame English Club leadership and KUET academic coursework."
-      cv_file: "cv_academic.html"
   master_cv_file: "cv_master.html"
 
 hero:
@@ -90,7 +82,7 @@ featured_projects:
     streamlit: "https://wikistats.streamlit.app/"
   - title: "Wikipedia Bot & Categorization Framework"
     tags: ["JupyterLab", "Pywikibot"]
-    focus: ["dev"]
+    focus: ["dev", "data_science"]
     description: "Custom Python framework (TanvirSdqBot) executing cross-wiki updates, user onboarding, and automated taxonomy management."
     github: "https://github.com/siddiquetanvir/TanvirSdqBot"
 
@@ -98,7 +90,7 @@ experience:
   - role: "Volunteer Contributor & Bot Operator"
     organization: "Wikimedia Ecosystem"
     period: "2022 — Present"
-    focus: ["dev"]
+    focus: ["dev", "data_science"]
     bullets:
       - "Engineer automated Pywikibot scripts for cross-wiki maintenance."
       - "Maintain consistency across Wikipedia, Wikidata, and Wikimedia Commons."
