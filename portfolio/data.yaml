@@ -35,7 +35,7 @@ metadata:
 hero:
   name: "Tanvir Siddique"
   alias: "@TanvirSdq"
-  status_badge: "CSE UNDERGRADUATE at KUET"
+  status_badge: "Computer Science & Engineering Student"
   headline: "Building CS Foundations & Open Source Automation"
   bio: "First-year Computer Science & Engineering student at KUET. Building core programming foundations in C/C++ while automating open-data systems with Python. Actively learning about machine learning, natural language processing, and data visualization."
   tech_stack:
