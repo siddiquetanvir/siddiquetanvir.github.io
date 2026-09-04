@@ -210,16 +210,18 @@
   }
 
   function buildProjects(data) {
-    const projects = data.featured_projects || [];
-    if (projects.length === 0) return null;
+    const allProjects = data.projects || data.featured_projects || [];
+    const featured = allProjects.filter((p) => p.featured !== false);
+    if (featured.length === 0) return null;
+
     const section = el("section", "section wrap reveal");
     section.id = "projects";
     section.innerHTML =
       `<div class="eyebrow">Featured work</div>` +
-      `<h2 class="section-title">Projects &amp; systems shipped</h2>`;
+      `<h2 class="section-title">Selected Projects</h2>`;
 
     const grid = el("div", "projects");
-    projects.forEach((p) => {
+    featured.forEach((p) => {
       const card = el("article", "project-card");
       const tags = p.tags || [];
       
@@ -231,9 +233,9 @@
           </a>
         `;
       }
-      if (p.streamlit || p.demo) {
+      if (p.demo || p.streamlit) {
         linksHTML += `
-          <a class="project-card__link" href="${escapeHtml(p.streamlit || p.demo)}" target="_blank" rel="noopener noreferrer">
+          <a class="project-card__link" href="${escapeHtml(p.demo || p.streamlit)}" target="_blank" rel="noopener noreferrer">
             Live Demo <span aria-hidden="true">&#8599;</span>
           </a>
         `;
@@ -241,6 +243,7 @@
 
       card.innerHTML = `
         <div class="project-card__tags">
+          ${p.category ? `<span class="badge badge--accent">${escapeHtml(p.category)}</span>` : ""}
           ${tags.map((t) => `<span class="badge">${escapeHtml(t)}</span>`).join("")}
         </div>
         <h3 class="project-card__title">${escapeHtml(p.title || "")}</h3>
@@ -252,20 +255,59 @@
       grid.appendChild(card);
     });
     section.appendChild(grid);
+
+    // Call to action button to full projects archive
+    const ctaWrap = el("div", "");
+    ctaWrap.style.marginTop = "36px";
+    ctaWrap.style.textAlign = "center";
+    ctaWrap.innerHTML = `
+      <a class="cta-link-btn" href="projects.html">
+        Explore All Projects &amp; Systems Archive (${allProjects.length}) <span aria-hidden="true">&#8599;</span>
+      </a>
+    `;
+    section.appendChild(ctaWrap);
+
     return section;
   }
 
   function buildExperience(data) {
-    const experience = data.experience || [];
+    const experience = data.professional_experience || [];
     if (experience.length === 0) return null;
     const section = el("section", "section wrap reveal");
     section.id = "experience";
     section.innerHTML =
       `<div class="eyebrow">Track record</div>` +
-      `<h2 class="section-title">Experience &amp; leadership</h2>`;
+      `<h2 class="section-title">Professional Experience</h2>`;
 
     const timeline = el("div", "timeline");
     experience.forEach((e) => {
+      const item = el("div", "timeline__item");
+      const bullets = e.bullets || [];
+      item.innerHTML = `
+        <div class="timeline__period">${escapeHtml(e.period || "")}</div>
+        <div class="timeline__content">
+          <div class="timeline__role">${escapeHtml(e.role || "")}</div>
+          <div class="timeline__org">${escapeHtml(e.organization || "")}</div>
+          ${bullets.length ? `<ul class="timeline__bullets">${bullets.map((b) => `<li>${escapeHtml(b)}</li>`).join("")}</ul>` : ""}
+        </div>
+      `;
+      timeline.appendChild(item);
+    });
+    section.appendChild(timeline);
+    return section;
+  }
+
+  function buildOpenSource(data) {
+    const items = data.open_source_contributions || [];
+    if (items.length === 0) return null;
+    const section = el("section", "section wrap reveal");
+    section.id = "open_source";
+    section.innerHTML =
+      `<div class="eyebrow">Ecosystem</div>` +
+      `<h2 class="section-title">Open Source Contributions</h2>`;
+
+    const timeline = el("div", "timeline");
+    items.forEach((e) => {
       const item = el("div", "timeline__item");
       const bullets = e.bullets || [];
       item.innerHTML = `
@@ -290,8 +332,8 @@
     const section = el("section", "section wrap reveal");
     section.id = "education";
     section.innerHTML =
-      `<div class="eyebrow">Academic background</div>` +
-      `<h2 class="section-title">Education</h2>`;
+      `<div class="eyebrow">Academia</div>` +
+      `<h2 class="section-title">Academic Background</h2>`;
 
     const group = el("div", "education__group");
     degrees.forEach((d) => {
@@ -308,6 +350,34 @@
     });
     section.appendChild(group);
 
+    return section;
+  }
+
+  function buildExtracurricular(data) {
+    const activities = data.extracurricular_activities || [];
+    if (activities.length === 0) return null;
+
+    const section = el("section", "section wrap reveal");
+    section.id = "extracurricular";
+    section.innerHTML =
+      `<div class="eyebrow">Campus &amp; Community</div>` +
+      `<h2 class="section-title">Extracurricular Activities</h2>`;
+
+    const timeline = el("div", "timeline");
+    activities.forEach((e) => {
+      const item = el("div", "timeline__item");
+      const bullets = e.bullets || [];
+      item.innerHTML = `
+        <div class="timeline__period">${escapeHtml(e.period || "")}</div>
+        <div class="timeline__content">
+          <div class="timeline__role">${escapeHtml(e.role || "")}</div>
+          <div class="timeline__org">${escapeHtml(e.organization || "")}</div>
+          ${bullets.length ? `<ul class="timeline__bullets">${bullets.map((b) => `<li>${escapeHtml(b)}</li>`).join("")}</ul>` : ""}
+        </div>
+      `;
+      timeline.appendChild(item);
+    });
+    section.appendChild(timeline);
     return section;
   }
 
@@ -328,34 +398,6 @@
       list.appendChild(li);
     });
     section.appendChild(list);
-    return section;
-  }
-
-  function buildPositions(data) {
-    const positions = data.positions_of_responsibility || [];
-    if (positions.length === 0) return null;
-
-    const section = el("section", "section wrap reveal");
-    section.id = "positions";
-    section.innerHTML =
-      `<div class="eyebrow">Leadership</div>` +
-      `<h2 class="section-title">Positions of Responsibility</h2>`;
-
-    const timeline = el("div", "timeline");
-    positions.forEach((e) => {
-      const item = el("div", "timeline__item");
-      const bullets = e.bullets || [];
-      item.innerHTML = `
-        <div class="timeline__period">${escapeHtml(e.period || "")}</div>
-        <div class="timeline__content">
-          <div class="timeline__role">${escapeHtml(e.role || "")}</div>
-          <div class="timeline__org">${escapeHtml(e.organization || "")}</div>
-          ${bullets.length ? `<ul class="timeline__bullets">${bullets.map((b) => `<li>${escapeHtml(b)}</li>`).join("")}</ul>` : ""}
-        </div>
-      `;
-      timeline.appendChild(item);
-    });
-    section.appendChild(timeline);
     return section;
   }
 
@@ -413,6 +455,11 @@
         <div class="eyebrow" style="justify-content:center;">${escapeHtml(interests.category || "")}</div>
         <p class="colophon__title">${escapeHtml(interests.title || "")}</p>
         <p class="colophon__desc">${escapeHtml(interests.description || "")}</p>
+        <div style="margin-top: 24px; text-align: center;">
+          <a class="cta-link-btn" href="${escapeHtml(interests.link || "research.html")}">
+            Read Research Statement &amp; Notes <span aria-hidden="true">&#8599;</span>
+          </a>
+        </div>
       </div>
     `;
     return section;
@@ -421,15 +468,28 @@
   function buildContact(data) {
     const contact = data.contact || {};
     const socials = contact.socials || [];
+    const devProfiles = contact.developer_profiles || [];
 
     const section = el("section", "section wrap reveal");
     section.id = "contact";
+    
+    let emailHTML = "";
+    if (contact.email) {
+      emailHTML = `
+        <div class="contact__email-row">
+          <a class="contact__email" href="mailto:${escapeHtml(contact.email)}">${escapeHtml(contact.email)}</a>
+          <button type="button" class="copy-email-btn" id="copy-email-btn" data-email="${escapeHtml(contact.email)}" aria-label="Copy email address">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+            <span id="copy-email-text">Copy</span>
+          </button>
+        </div>
+      `;
+    }
+
     section.innerHTML =
       `<div class="eyebrow">Get in touch</div>` +
       `<h2 class="section-title">Contact</h2>` +
-      (contact.email
-        ? `<a class="contact__email" href="mailto:${escapeHtml(contact.email)}">${escapeHtml(contact.email)}</a>`
-        : "");
+      emailHTML;
 
     const list = el("ul", "social-list");
     socials.forEach((s) => {
@@ -443,6 +503,23 @@
       list.appendChild(li);
     });
     section.appendChild(list);
+
+    // Extended Developer & Research Footprint
+    if (devProfiles.length > 0) {
+      const devWrap = el("div", "dev-footprint");
+      devWrap.innerHTML = `
+        <div class="dev-footprint__title">Developer &amp; Knowledge Footprint</div>
+        <div class="dev-footprint__grid">
+          ${devProfiles.map((p) => `
+            <a class="dev-chip" href="${escapeHtml(p.url)}" target="_blank" rel="noopener noreferrer">
+              <span>${escapeHtml(p.label)}</span>
+              <span class="arrow" style="font-size:10px; color:var(--text-secondary);">&#8599;</span>
+            </a>
+          `).join("")}
+        </div>
+      `;
+      section.appendChild(devWrap);
+    }
 
     return section;
   }
@@ -468,9 +545,6 @@
    * Render + reveal-on-scroll
    * ------------------------------------------------------------------- */
 
-  // Maps each possible `nav` id (from data.yaml) to the builder that renders
-  // it. Adding/removing/reordering sections is now purely a data.yaml edit —
-  // render() no longer hardcodes a fixed sequence of appendChild calls.
   const SECTION_BUILDERS = {
     about: buildAbout,
     impact: buildImpact,
@@ -478,8 +552,9 @@
     skills: buildSkills,
     projects: buildProjects,
     experience: buildExperience,
-    positions: buildPositions,
+    open_source: buildOpenSource,
     education: buildEducation,
+    extracurricular: buildExtracurricular,
     courses: buildCourses,
     certifications: buildCertifications,
     research: buildResearch,
@@ -506,6 +581,54 @@
     buildSideRail(activeNav);
     initScrollspy(activeNav);
     initScrollReveal();
+    initCopyEmail();
+  }
+
+  function initCopyEmail() {
+    const btn = document.getElementById("copy-email-btn");
+    const textSpan = document.getElementById("copy-email-text");
+    if (!btn || !textSpan) return;
+
+    btn.addEventListener("click", () => {
+      const email = btn.dataset.email;
+      if (!email) return;
+
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(email).then(() => {
+          textSpan.textContent = "Copied!";
+          btn.style.borderColor = "var(--accent-color)";
+          btn.style.color = "var(--accent-color)";
+          setTimeout(() => {
+            textSpan.textContent = "Copy";
+            btn.style.borderColor = "";
+            btn.style.color = "";
+          }, 2000);
+        }).catch(() => {
+          fallbackCopyText(email, textSpan, btn);
+        });
+      } else {
+        fallbackCopyText(email, textSpan, btn);
+      }
+    });
+  }
+
+  function fallbackCopyText(text, textSpan, btn) {
+    const textArea = document.createElement("textarea");
+    textArea.value = text;
+    textArea.style.position = "fixed";
+    textArea.style.opacity = "0";
+    document.body.appendChild(textArea);
+    textArea.select();
+    try {
+      document.execCommand("copy");
+      textSpan.textContent = "Copied!";
+      setTimeout(() => {
+        textSpan.textContent = "Copy";
+      }, 2000);
+    } catch (err) {
+      console.error("Copy failed", err);
+    }
+    document.body.removeChild(textArea);
   }
 
   function initScrollReveal() {

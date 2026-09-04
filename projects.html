@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tanvir Siddique | Projects & Systems Archive</title>
+<meta name="description" content="Complete projects archive of Tanvir Siddique: Automated bots, open-source frameworks, interactive web applications, and NLP utilities.">
+
+<script>
+  (function () {
+    try {
+      var stored = localStorage.getItem("theme");
+      var theme = stored || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+      document.documentElement.setAttribute("data-theme", theme);
+    } catch (e) {
+      document.documentElement.setAttribute("data-theme", "light");
+    }
+  })();
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,900;1,500;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css?v=7">
+</head>
+<body>
+
+<header class="subpage-header">
+  <a class="back-link" href="./">
+    <span aria-hidden="true">&#8592;</span> Tanvir Siddique
+  </a>
+  <button id="theme-toggle" class="theme-toggle-btn" type="button" aria-label="Toggle color theme" style="position:static;">
+    <svg class="icon icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+      <circle cx="12" cy="12" r="4.2"></circle>
+      <path d="M12 2.5v3M12 18.5v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2.5 12h3M18.5 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"></path>
+    </svg>
+    <svg class="icon icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z"></path>
+    </svg>
+  </button>
+</header>
+
+<main class="subpage-wrap">
+  <header class="sop-header">
+    <div class="sop-meta">Software &bull; Bots &bull; Systems</div>
+    <h1 class="sop-title">Projects &amp; Systems Archive</h1>
+    <p class="sop-subtitle">
+      A filterable catalogue of automation bots, web dashboards, and machine learning utilities built for open knowledge ecosystems and systems experimentation.
+    </p>
+  </header>
+
+  <!-- Filter Buttons -->
+  <nav class="filter-bar" aria-label="Project category filters">
+    <button type="button" class="filter-btn is-active" data-filter="all">All Projects</button>
+    <button type="button" class="filter-btn" data-filter="Automated Bot">Automated Bot</button>
+    <button type="button" class="filter-btn" data-filter="WebApp">WebApp</button>
+    <button type="button" class="filter-btn" data-filter="ML/AI">ML/AI</button>
+  </nav>
+
+  <!-- Projects Grid -->
+  <div class="projects" id="projects-grid">
+    <!-- Project 1 -->
+    <article class="project-card" data-category="WebApp">
+      <div class="project-card__tags">
+        <span class="badge badge--accent">WebApp</span>
+        <span class="badge">Python</span>
+        <span class="badge">Streamlit</span>
+        <span class="badge">Data Visualization</span>
+      </div>
+      <h2 class="project-card__title">Wikimedia Campaign Analytics</h2>
+      <p class="project-card__desc">
+        An interactive web application providing retention metrics, edit longevity, and raw participation analytics across open-knowledge initiatives and editor cohorts.
+      </p>
+      <div style="display: flex; flex-direction: column; width: 100%;">
+        <a class="project-card__link" href="https://github.com/siddiquetanvir/WebApp" target="_blank" rel="noopener noreferrer">
+          View on GitHub <span aria-hidden="true">&#8599;</span>
+        </a>
+        <a class="project-card__link" href="https://wikistats.streamlit.app/" target="_blank" rel="noopener noreferrer">
+          Live Demo <span aria-hidden="true">&#8599;</span>
+        </a>
+      </div>
+    </article>
+
+    <!-- Project 2 -->
+    <article class="project-card" data-category="Automated Bot">
+      <div class="project-card__tags">
+        <span class="badge badge--accent">Automated Bot</span>
+        <span class="badge">Python</span>
+        <span class="badge">Pywikibot</span>
+        <span class="badge">JupyterLab</span>
+      </div>
+      <h2 class="project-card__title">Wikipedia Bot &amp; Categorization Framework</h2>
+      <p class="project-card__desc">
+        Custom automated framework (TanvirSdqBot) executing cross-wiki batch maintenance, user onboarding, namespace categorization, and structural taxonomy verification.
+      </p>
+      <div style="display: flex; flex-direction: column; width: 100%;">
+        <a class="project-card__link" href="https://github.com/siddiquetanvir/TanvirSdqBot" target="_blank" rel="noopener noreferrer">
+          View on GitHub <span aria-hidden="true">&#8599;</span>
+        </a>
+      </div>
+    </article>
+
+    <!-- Project 3 -->
+    <article class="project-card" data-category="ML/AI">
+      <div class="project-card__tags">
+        <span class="badge badge--accent">ML/AI</span>
+        <span class="badge">Python</span>
+        <span class="badge">NLP</span>
+        <span class="badge">Linguistics</span>
+      </div>
+      <h2 class="project-card__title">Low-Resource NLP Toolkit (Fulfulde &amp; Basque)</h2>
+      <p class="project-card__desc">
+        Exploratory scripts, morpho-syntactic tokenization experiments, and corpus curation for underrepresented languages with non-standard agglutinative structures.
+      </p>
+      <div style="display: flex; flex-direction: column; width: 100%;">
+        <a class="project-card__link" href="https://github.com/siddiquetanvir" target="_blank" rel="noopener noreferrer">
+          View on GitHub <span aria-hidden="true">&#8599;</span>
+        </a>
+      </div>
+    </article>
+
+    <!-- Project 4 -->
+    <article class="project-card" data-category="Automated Bot">
+      <div class="project-card__tags">
+        <span class="badge badge--accent">Automated Bot</span>
+        <span class="badge">Pywikibot</span>
+        <span class="badge">Wikidata</span>
+        <span class="badge">SPARQL</span>
+      </div>
+      <h2 class="project-card__title">Wikidata Entity &amp; Property Consistency Bot</h2>
+      <p class="project-card__desc">
+        Automated batch validation of multilingual statement claims and taxonomy tree reconciliation across Wikidata items to ensure ontological consistency.
+      </p>
+      <div style="display: flex; flex-direction: column; width: 100%;">
+        <a class="project-card__link" href="https://github.com/siddiquetanvir/TanvirSdqBot" target="_blank" rel="noopener noreferrer">
+          View on GitHub <span aria-hidden="true">&#8599;</span>
+        </a>
+      </div>
+    </article>
+
+    <!-- Project 5 -->
+    <article class="project-card" data-category="WebApp">
+      <div class="project-card__tags">
+        <span class="badge badge--accent">WebApp</span>
+        <span class="badge">Python</span>
+        <span class="badge">Pandas</span>
+        <span class="badge">Streamlit</span>
+      </div>
+      <h2 class="project-card__title">Open Knowledge Retention Dashboard</h2>
+      <p class="project-card__desc">
+        Cohort retention analysis tool measuring editor onboarding, edit frequency, and longevity in community open-access campaigns.
+      </p>
+      <div style="display: flex; flex-direction: column; width: 100%;">
+        <a class="project-card__link" href="https://github.com/siddiquetanvir/WebApp" target="_blank" rel="noopener noreferrer">
+          View on GitHub <span aria-hidden="true">&#8599;</span>
+        </a>
+      </div>
+    </article>
+  </div>
+
+  <div style="margin-top: 56px; text-align: center;">
+    <a class="cta-link-btn" href="./">
+      <span aria-hidden="true">&#8592;</span> Return to Main Overview
+    </a>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="site-footer__group">
+    <span>Systems &bull; Software Archive</span>
+    <span>KUET &mdash; Khulna, Bangladesh</span>
+  </div>
+  <div class="site-footer__group">
+    <span>&copy; <script>document.write(new Date().getFullYear())</script> Tanvir Siddique</span>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    // Theme toggle
+    const themeBtn = document.getElementById("theme-toggle");
+    if (themeBtn) {
+      themeBtn.addEventListener("click", () => {
+        const current = document.documentElement.getAttribute("data-theme") || "light";
+        const next = current === "dark" ? "light" : "dark";
+        document.documentElement.setAttribute("data-theme", next);
+        try { localStorage.setItem("theme", next); } catch (e) {}
+      });
+    }
+
+    // Category Filter
+    const filterButtons = document.querySelectorAll(".filter-btn");
+    const cards = document.querySelectorAll("#projects-grid .project-card");
+
+    filterButtons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        filterButtons.forEach((b) => b.classList.remove("is-active"));
+        btn.classList.add("is-active");
+
+        const filter = btn.getAttribute("data-filter");
+        cards.forEach((card) => {
+          const category = card.getAttribute("data-category");
+          if (filter === "all" || category === filter) {
+            card.style.display = "flex";
+          } else {
+            card.style.display = "none";
+          }
+        });
+      });
+    });
+  })();
+</script>
+
+</body>
+</html>

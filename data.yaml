@@ -8,31 +8,29 @@ site:
 # ------------------------------------------------------------------------------
 # Any section listed here will appear in the sidebar quick-rail and render on
 # the page in the exact sequence specified. To enable or disable a section,
-# simply comment/uncomment its entry here and ensure its corresponding data block
-# below is filled in.
+# simply comment/uncomment its entry here.
 # ==============================================================================
 nav:
   - id: "about"
     label: "About"
   - id: "impact"
     label: "Impact"
-  # - id: "achievements"
   # - id: "achievements"      # Uncomment once achievements list below is populated
   #   label: "Achievements"
   - id: "skills"
-    label: "Skills"
+    label: "Toolkit"
   - id: "projects"
     label: "Projects"
-  - id: "experience"
-    label: "Experience"
-  - id: "positions"
-    label: "Leadership"
+  # - id: "experience"        # Professional Experience (uncomment when adding internships/jobs)
+  #   label: "Experience"
+  - id: "open_source"
+    label: "Open Source"
   - id: "education"
     label: "Education"
-  # - id: "courses"
+  - id: "extracurricular"
+    label: "Activities"
   # - id: "courses"           # Uncomment once courses list below is populated
   #   label: "Courses"
-  # - id: "certifications"
   # - id: "certifications"    # Uncomment once certifications list below is populated
   #   label: "Certifications"
   - id: "research"
@@ -40,13 +38,12 @@ nav:
   - id: "contact"
     label: "Contact"
 
-
 hero:
   name: "Tanvir Siddique"
   alias: "@TanvirSdq"
   status_badge: "Computer Science & Engineering Student"
   headline: "Building CS Foundations & Open Source Automation"
-  bio: "First-year Computer Science & Engineering student at KUET. Building core programming foundations in C/C++ while automating open-data systems with Python. Actively learning about machine learning, natural language processing, and data visualization."
+  bio: "First-year Computer Science & Engineering student at KUET. Building core programming foundations in C/C++ while automating open-data systems with Python. Actively learning about machine learning, natural language processing, and computational linguistics."
   tech_stack:
     - "C / C++"
     - "Python"
@@ -83,65 +80,133 @@ skills:
     - "Technical Operations"
     - "Linguistics"
 
-featured_projects:
+# ==============================================================================
+# PROJECTS (Featured on Home & Filterable on /projects.html)
+# Categories: "Automated Bot", "WebApp", "ML/AI"
+# ==============================================================================
+projects:
   - title: "Wikimedia Campaign Analytics"
-    tags: ["Python", "Streamlit"]
+    category: "WebApp"
+    tags: ["Python", "Streamlit", "Data Visualization", "REST APIs"]
     description: "An interactive web app providing retention metrics and raw data visualization across open-knowledge initiatives."
     github: "https://github.com/siddiquetanvir/WebApp"
-    streamlit: "https://wikistats.streamlit.app/"
+    demo: "https://wikistats.streamlit.app/"
+    featured: true
+
   - title: "Wikipedia Bot & Categorization Framework"
-    tags: ["JupyterLab", "Pywikibot"]
+    category: "Automated Bot"
+    tags: ["Python", "JupyterLab", "Pywikibot", "Taxonomy Automation"]
     description: "Custom Python framework (TanvirSdqBot) executing cross-wiki updates, user onboarding, and automated taxonomy management."
     github: "https://github.com/siddiquetanvir/TanvirSdqBot"
+    featured: true
 
-experience:
+  - title: "Low-Resource NLP Toolkit (Fulfulde & Basque)"
+    category: "ML/AI"
+    tags: ["Python", "NLP", "Linguistics", "Tokenization"]
+    description: "Exploratory scripts, morpho-syntactic tokenization experiments, and corpus curation for underrepresented languages."
+    github: "https://github.com/siddiquetanvir"
+    featured: true
+
+  - title: "Wikidata Entity & Property Consistency Bot"
+    category: "Automated Bot"
+    tags: ["Pywikibot", "Wikidata", "SPARQL", "Taxonomy"]
+    description: "Automated batch validation of multilingual statement claims and taxonomy tree reconciliation across Wikidata items."
+    github: "https://github.com/siddiquetanvir/TanvirSdqBot"
+    featured: false
+
+  - title: "Open Knowledge Retention Dashboard"
+    category: "WebApp"
+    tags: ["Python", "Pandas", "Streamlit", "APIs"]
+    description: "Cohort retention analysis tool measuring editor onboarding, edit frequency, and longevity in community campaigns."
+    github: "https://github.com/siddiquetanvir/WebApp"
+    featured: false
+
+# ==============================================================================
+# PROFESSIONAL EXPERIENCE (Industry Internships & Jobs)
+# Reserved for formal work. Leave empty or populate when roles begin.
+# ==============================================================================
+professional_experience: []
+# Example format:
+# professional_experience:
+#   - role: "Software Engineering Intern"
+#     organization: "Tech Company / Lab"
+#     period: "Summer 2026"
+#     bullets:
+#       - "Built backend APIs using Python and PostgreSQL."
+#       - "Improved test coverage by 25%."
+
+# ==============================================================================
+# OPEN SOURCE CONTRIBUTIONS & INITIATIVES
+# Dedicated to open-source engineering, bot operations, and data infrastructure.
+# ==============================================================================
+open_source_contributions:
   - role: "Volunteer Contributor & Bot Operator"
     organization: "Wikimedia Ecosystem"
     period: "2022 — Present"
     bullets:
-      - "Engineer automated Pywikibot scripts for cross-wiki maintenance."
-      - "Maintain consistency across Wikipedia, Wikidata, and Wikimedia Commons."
+      - "Engineer automated Pywikibot scripts for cross-wiki maintenance and structural reconciliation."
+      - "Maintain taxonomic consistency across Wikipedia, Wikidata, and Wikimedia Commons."
   - role: "Technical & Data Lead"
     organization: "Project Korikath"
     period: "2023 — Present"
     bullets:
-      - "Manage technical infrastructure supporting campaign analytics."
-      - "Build custom Python utility scripts for retention and reporting."
+      - "Manage technical infrastructure supporting open-knowledge campaign analytics."
+      - "Build custom Python utility scripts for retention tracking and community reporting."
 
-positions_of_responsibility:
-# POSITIONS OF RESPONSIBILITY — optional, empty by default. Leadership or
-# organizational roles that aren't quite "work experience" (club/society
-# leadership, committee roles, etc). Same shape as `experience`.
-# Example:
-# positions_of_responsibility:
-#   - role: "President"
-#     organization: "Some Society"
-#     period: "2025 — 2026"
-#     bullets:
-#       - "Led weekly meetings and coordinated a 12-person committee."
-  - role: "Director of Leadership & Management"
-    organization: "Notre Dame English Club"
-    period: "2023 — 2024"
-    bullets:
-      - "Directed leadership and management operations for the college's English-language club."
-      - "Organized language-enrichment events, debates, and peer-mentoring programs."
-      - "Coordinated logistics and member engagement across the academic year."
-
+# ==============================================================================
+# EDUCATION (Strictly Degree-Granting Institutions)
+# ==============================================================================
 education:
   degrees:
     - degree: "B.Sc. in Computer Science & Engineering"
       institution: "Khulna University of Engineering & Technology (KUET)"
       period: "2026 — Present"
-      details: "Undergraduate coursework in algorithms, systems programming, and software engineering fundamentals."
+      details: "Undergraduate coursework in algorithms, data structures, systems programming, and software engineering fundamentals."
     - degree: "Higher Secondary Certificate"
       institution: "Notre Dame College, Dhaka"
       period: "2023 — 2025"
-      details: "Science"
-research_interests:
-  category: "Research & Interests"
-  title: "Machine Learning, Natural Language Processing, Linguistics, Open Access"
-  description: "Worked on low-resource language preservation (Fulfulde, Basque), historical documentations, and multi-language accessibility across digital ecosystems."
+      details: "Science division coursework with focus on physics, chemistry, and higher mathematics."
 
+# ==============================================================================
+# EXTRACURRICULAR ACTIVITIES (Clubs, Societies & Campus Leadership)
+# ==============================================================================
+extracurricular_activities:
+  - role: "Director of Leadership & Management"
+    organization: "Notre Dame English Club (NDEC)"
+    period: "2023 — 2024"
+    bullets:
+      - "Directed leadership and management operations for the college's English-language club."
+      - "Organized language-enrichment events, debates, and peer-mentoring programs."
+      - "Coordinated logistics and member engagement across the academic year."
+  - role: "Member"
+    organization: "KUET Programming Society (KUETPS)"
+    period: "2026 — Present"
+    bullets:
+      - "Active participant in competitive programming sessions and algorithm workshops."
+  - role: "Member"
+    organization: "HACK (Hardware & Autonomous Club of KUET)"
+    period: "2026 — Present"
+    bullets:
+      - "Collaborating on embedded hardware, sensor integration, and robotics initiatives."
+  - role: "Member"
+    organization: "SGIPC (Society of Graphical Information & Photo-Communication)"
+    period: "2026 — Present"
+    bullets:
+      - "Participating in visual media, publication design, and visual communication projects."
+
+# ==============================================================================
+# RESEARCH TEASER (Teaser on Home -> Full SOP on /research.html)
+# ==============================================================================
+research_interests:
+  category: "Academic Inquiries & Vision"
+  title: "Machine Learning, Natural Language Processing, Linguistics & Open Access"
+  description: "Investigating computational morphology, low-resource NLP (Fulfulde, Basque), and large-scale knowledge taxonomy across open digital ecosystems."
+  link: "research.html"
+
+# ==============================================================================
+# CONTACT & PROFILES
+# Primary contact channels + extended coder/academic footprint.
+# ==============================================================================
 contact:
   email: "siddiquetanvir27@gmail.com"
   socials:
@@ -151,20 +216,24 @@ contact:
       url: "https://github.com/siddiquetanvir"
     - label: "Wikimedia"
       url: "https://meta.wikimedia.org/wiki/User:TanvirSdq"
+  developer_profiles:
+    - label: "Codeforces"
+      url: "https://codeforces.com/profile/TanvirSdq"
+    - label: "Kaggle"
+      url: "https://www.kaggle.com/tanvirsdq"
+    - label: "LeetCode"
+      url: "https://leetcode.com/u/tanvirsdq/"
+    - label: "English Wikipedia"
+      url: "https://en.wikipedia.org/wiki/User:TanvirSdq"
+    - label: "Wikidata"
+      url: "https://www.wikidata.org/wiki/User:TanvirSdq"
+    - label: "Wikimedia Commons"
+      url: "https://commons.wikimedia.org/wiki/User:TanvirSdq"
 
 # ==============================================================================
 # ACHIEVEMENTS (Optional)
 # ------------------------------------------------------------------------------
-# Format: A plain list of string bullets highlighting competitive programming ranks,
-# hackathons, scholarships, Olympiads, or recognitions.
-#
-# To activate:
-# 1. Uncomment "achievements" in the `nav` list above.
-# 2. Add your items below:
-#
 # achievements:
-#   - "Received the [Award Name] for [reason]."
-#   - "Selected for [Program] at [Institution], from [N]+ applicants."
 #   - "Champion, National Hackathon 2025 (KUET Team Lead)."
 #   - "Top 5% finish in Codeforces Round #900 (Div. 2)."
 #   - "Recipient of KUET Dean's Scholarship for Academic Excellence."
@@ -174,16 +243,6 @@ achievements: []
 # ==============================================================================
 # COURSES & RELEVANT COURSEWORK (Optional)
 # ------------------------------------------------------------------------------
-# Format: A list of objects detailing university or specialized courses.
-# Fields:
-#   - name:   (String, Required) Course title
-#   - status: (String, Optional) "completed" or "ongoing" (ongoing adds a † indicator)
-#   - grade:  (String, Optional) Final grade, e.g. "A+", "4.00", etc.
-#
-# To activate:
-# 1. Uncomment "courses" in the `nav` list above.
-# 2. Add your items below:
-#
 # courses:
 #   - name: "Data Structures & Algorithms"
 #     status: "completed"
@@ -198,19 +257,7 @@ courses: []
 # ==============================================================================
 # CERTIFICATIONS & LICENSES (Optional)
 # ------------------------------------------------------------------------------
-# Format: A list of objects detailing credentials, MOOCs, or vendor certifications.
-# Fields:
-#   - name:   (String, Required) Name of certification
-#   - issuer: (String, Optional) Credential organization (e.g. Coursera, DeepLearning.AI, AWS)
-#   - year:   (String/Int, Optional) Year acquired (e.g. "2026")
-#
-# To activate:
-# 1. Uncomment "certifications" in the `nav` list above.
-# 2. Add your items below:
-#
 # certifications:
-#   - name: "AWS Certified Cloud Practitioner"
-#     issuer: "Amazon Web Services"
 #   - name: "Deep Learning Specialization"
 #     issuer: "DeepLearning.AI"
 #     year: "2026"
