@@ -152,9 +152,6 @@ contact:
     - label: "Wikimedia"
       url: "https://meta.wikimedia.org/wiki/User:TanvirSdq"
 
-# ACHIEVEMENTS — optional, empty by default. Awards, scholarships, selective
-# programs, notable recognitions — one plain-text bullet per line.
-# Example (uncomment to activate):
 # ==============================================================================
 # ACHIEVEMENTS (Optional)
 # ------------------------------------------------------------------------------
@@ -174,10 +171,6 @@ contact:
 # ==============================================================================
 achievements: []
 
-# COURSES — optional, empty by default. Coursework worth surfacing.
-# `status`: "completed" | "ongoing" (renders a small dagger marker).
-# `grade` is optional (e.g. a top grade worth highlighting).
-# Example:
 # ==============================================================================
 # COURSES & RELEVANT COURSEWORK (Optional)
 # ------------------------------------------------------------------------------
@@ -192,11 +185,8 @@ achievements: []
 # 2. Add your items below:
 #
 # courses:
-#   - name: "Introduction to Machine Learning"
 #   - name: "Data Structures & Algorithms"
 #     status: "completed"
-#     grade: "A*"
-#   - name: "Linear Algebra"
 #     grade: "A+"
 #   - name: "Object Oriented Programming (C++)"
 #     status: "completed"
@@ -205,8 +195,6 @@ achievements: []
 # ==============================================================================
 courses: []
 
-# CERTIFICATIONS — optional, empty by default.
-# Example:
 # ==============================================================================
 # CERTIFICATIONS & LICENSES (Optional)
 # ------------------------------------------------------------------------------
