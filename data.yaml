@@ -29,8 +29,8 @@ nav:
     label: "Education"
   - id: "extracurricular"
     label: "Activities"
-  # - id: "courses"           # Uncomment once courses list below is populated
-  #   label: "Courses"
+  - id: "courses"           
+    label: "Courses"
   # - id: "certifications"    # Uncomment once certifications list below is populated
   #   label: "Certifications"
   - id: "research"
@@ -87,7 +87,7 @@ skills:
 projects:
   - title: "Wikimedia Campaign Analytics"
     category: "WebApp"
-    tags: ["Python", "Streamlit", "Data Visualization", "REST APIs"]
+    tags: ["Python", "Streamlit", "Data Visualization", "MediaWiki APIs"]
     description: "An interactive web app providing retention metrics and raw data visualization across open-knowledge initiatives."
     github: "https://github.com/siddiquetanvir/WebApp"
     demo: "https://wikistats.streamlit.app/"
@@ -100,26 +100,26 @@ projects:
     github: "https://github.com/siddiquetanvir/TanvirSdqBot"
     featured: true
 
-  - title: "Low-Resource NLP Toolkit (Fulfulde & Basque)"
-    category: "ML/AI"
-    tags: ["Python", "NLP", "Linguistics", "Tokenization"]
-    description: "Exploratory scripts, morpho-syntactic tokenization experiments, and corpus curation for underrepresented languages."
-    github: "https://github.com/siddiquetanvir"
-    featured: true
+  #- title: "Low-Resource NLP Toolkit (Fulfulde & Basque)"
+   # category: "ML/AI"
+   # tags: ["Python", "NLP", "Linguistics", "Tokenization"]
+   # description: "Exploratory scripts, morpho-syntactic tokenization experiments, and corpus curation for underrepresented languages."
+   # github: "https://github.com/siddiquetanvir"
+   # featured: true
 
-  - title: "Wikidata Entity & Property Consistency Bot"
-    category: "Automated Bot"
-    tags: ["Pywikibot", "Wikidata", "SPARQL", "Taxonomy"]
-    description: "Automated batch validation of multilingual statement claims and taxonomy tree reconciliation across Wikidata items."
-    github: "https://github.com/siddiquetanvir/TanvirSdqBot"
-    featured: false
+  #- title: "Wikidata Entity & Property Consistency Bot"
+   # category: "Automated Bot"
+   # tags: ["Pywikibot", "Wikidata", "SPARQL", "Taxonomy"]
+   # description: "Automated batch validation of multilingual statement claims and taxonomy tree reconciliation across Wikidata items."
+   # github: "https://github.com/siddiquetanvir/TanvirSdqBot"
+   # featured: false
 
-  - title: "Open Knowledge Retention Dashboard"
-    category: "WebApp"
-    tags: ["Python", "Pandas", "Streamlit", "APIs"]
-    description: "Cohort retention analysis tool measuring editor onboarding, edit frequency, and longevity in community campaigns."
-    github: "https://github.com/siddiquetanvir/WebApp"
-    featured: false
+  #- title: "Open Knowledge Retention Dashboard"
+   # category: "WebApp"
+   # tags: ["Python", "Pandas", "Streamlit", "APIs"]
+   # description: "Cohort retention analysis tool measuring editor onboarding, edit frequency, and longevity in community campaigns."
+   # github: "https://github.com/siddiquetanvir/WebApp"
+   # featured: false
 
 # ==============================================================================
 # PROFESSIONAL EXPERIENCE (Industry Internships & Jobs)
@@ -200,7 +200,7 @@ extracurricular_activities:
 research_interests:
   category: "Academic Inquiries & Vision"
   title: "Machine Learning, Natural Language Processing, Linguistics & Open Access"
-  description: "Investigating computational morphology, low-resource NLP (Fulfulde, Basque), and large-scale knowledge taxonomy across open digital ecosystems."
+  description: "Exploring the intersection of machine learning, natural language processing, and linguistics to enhance open-access knowledge systems. Focused on developing tools and frameworks that facilitate automated content curation, multilingual data processing, and the democratization of information."
   link: "research.html"
 
 # ==============================================================================
@@ -221,11 +221,11 @@ contact:
       url: "https://codeforces.com/profile/TanvirSdq"
     - label: "Kaggle"
       url: "https://www.kaggle.com/tanvirsdq"
-    - label: "LeetCode"
-      url: "https://leetcode.com/u/tanvirsdq/"
-    - label: "English Wikipedia"
-      url: "https://en.wikipedia.org/wiki/User:TanvirSdq"
-    - label: "Wikidata"
+    #- label: "LeetCode"
+     # url: "https://leetcode.com/u/tanvirsdq/"
+   # - label: "English Wikipedia"
+   #   url: "https://en.wikipedia.org/wiki/User:TanvirSdq"
+   # - label: "Wikidata"
       url: "https://www.wikidata.org/wiki/User:TanvirSdq"
     - label: "Wikimedia Commons"
       url: "https://commons.wikimedia.org/wiki/User:TanvirSdq"
@@ -252,7 +252,13 @@ achievements: []
 #   - name: "Discrete Mathematics"
 #     status: "ongoing"
 # ==============================================================================
-courses: []
+courses: 
+    - name: "Machine Learning Specialization (Andrew Ng, Coursera)"
+      status: "completed"
+
+    - name: "Introduction to AI & Data Science (GCI World 2026, Matsuo-Iwasawa Lab U-Tokyo)"
+      status: "ongoing"
+      #grade:
 
 # ==============================================================================
 # CERTIFICATIONS & LICENSES (Optional)
