@@ -8,29 +8,26 @@ nav:
     label: "About"
   - id: "impact"
     label: "Impact"
+  - id: "achievements"
+    label: "Achievements"
   - id: "skills"
     label: "Skills"
   - id: "projects"
     label: "Projects"
   - id: "experience"
     label: "Experience"
+  - id: "positions"
+    label: "Leadership"
   - id: "education"
     label: "Education"
+  - id: "courses"
+    label: "Courses"
+  - id: "certifications"
+    label: "Certifications"
   - id: "research"
     label: "Research"
   - id: "contact"
     label: "Contact"
-
-# Global switches for the CV-generation build engine (generate_cv.py) and the
-# on-site resume download links / ?view= filtering — a single source of truth
-# so track ids, labels, and output filenames never drift out of sync.
-metadata:
-  cv_focus_tracks:
-    - id: "data_science"
-      label: "Data Science & Artificial Intelligence"
-      description: "Automation frameworks, applied data pipelines, and analytics tooling across Wikimedia and Project Korikath."
-      cv_file: "cv_data_science.html"
-  master_cv_file: "cv_master.html"
 
 hero:
   name: "Tanvir Siddique"
@@ -77,13 +74,11 @@ skills:
 featured_projects:
   - title: "Wikimedia Campaign Analytics"
     tags: ["Python", "Streamlit"]
-    focus: ["dev", "data_science"]
     description: "An interactive web app providing retention metrics and raw data visualization across open-knowledge initiatives."
     github: "https://github.com/siddiquetanvir/WebApp"
     streamlit: "https://wikistats.streamlit.app/"
   - title: "Wikipedia Bot & Categorization Framework"
     tags: ["JupyterLab", "Pywikibot"]
-    focus: ["dev", "data_science"]
     description: "Custom Python framework (TanvirSdqBot) executing cross-wiki updates, user onboarding, and automated taxonomy management."
     github: "https://github.com/siddiquetanvir/TanvirSdqBot"
 
@@ -91,23 +86,33 @@ experience:
   - role: "Volunteer Contributor & Bot Operator"
     organization: "Wikimedia Ecosystem"
     period: "2022 — Present"
-    focus: ["dev", "data_science"]
     bullets:
       - "Engineer automated Pywikibot scripts for cross-wiki maintenance."
       - "Maintain consistency across Wikipedia, Wikidata, and Wikimedia Commons."
   - role: "Technical & Data Lead"
     organization: "Project Korikath"
     period: "2023 — Present"
-    focus: ["dev", "data_science"]
     bullets:
       - "Manage technical infrastructure supporting campaign analytics."
       - "Build custom Python utility scripts for retention and reporting."
+
+positions_of_responsibility:
+# POSITIONS OF RESPONSIBILITY — optional, empty by default. Leadership or
+# organizational roles that aren't quite "work experience" (club/society
+# leadership, committee roles, etc). Same shape as `experience`.
+# Example:
+# positions_of_responsibility:
+#   - role: "President"
+#     organization: "Some Society"
+#     period: "2025 — 2026"
+#     bullets:
+#       - "Led weekly meetings and coordinated a 12-person committee."
   - role: "Director of Leadership & Management"
     organization: "Notre Dame English Club"
     period: "2023 — 2024"
-    focus: ["academic"]
     bullets:
-      - "Participated in academic events, PET sessions, and workshops."
+      - "Directed leadership and management operations for the college's English-language club."
+      - "Organized language-enrichment events, debates, and peer-mentoring programs."
       - "Coordinated logistics and member engagement across the academic year."
 
 education:
@@ -120,10 +125,6 @@ education:
       institution: "Notre Dame College, Dhaka"
       period: "2023 — 2025"
       details: "Science"
-  # Add entries here as you complete certifications or programs — the
-  # Certifications sub-section only renders once this list isn't empty.
-  certifications: []
-
 research_interests:
   category: "Research & Interests"
   title: "Machine Learning, Natural Language Processing, Linguistics, Open Access"
@@ -138,3 +139,31 @@ contact:
       url: "https://github.com/siddiquetanvir"
     - label: "Wikimedia"
       url: "https://meta.wikimedia.org/wiki/User:TanvirSdq"
+
+# ACHIEVEMENTS — optional, empty by default. Awards, scholarships, selective
+# programs, notable recognitions — one plain-text bullet per line.
+# Example (uncomment to activate):
+# achievements:
+#   - "Received the [Award Name] for [reason]."
+#   - "Selected for [Program] at [Institution], from [N]+ applicants."
+achievements: []
+
+# COURSES — optional, empty by default. Coursework worth surfacing.
+# `status`: "completed" | "ongoing" (renders a small dagger marker).
+# `grade` is optional (e.g. a top grade worth highlighting).
+# Example:
+# courses:
+#   - name: "Introduction to Machine Learning"
+#     status: "completed"
+#     grade: "A*"
+#   - name: "Linear Algebra"
+#     status: "ongoing"
+courses: []
+
+# CERTIFICATIONS — optional, empty by default.
+# Example:
+# certifications:
+#   - name: "AWS Certified Cloud Practitioner"
+#     issuer: "Amazon Web Services"
+#     year: "2026"
+certifications: []

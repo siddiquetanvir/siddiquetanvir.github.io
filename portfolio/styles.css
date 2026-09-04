@@ -103,30 +103,6 @@ button { font: inherit; }
   margin-left: var(--sidebar-width);
 }
 
-.view-banner {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 8px 20px;
-  padding: 12px var(--gutter);
-  background: var(--card-bg);
-  border-bottom: var(--rule-hair);
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: var(--text-secondary);
-  transition: background-color 0.35s var(--ease), border-color 0.35s var(--ease);
-}
-.view-banner strong { color: var(--accent-color); }
-.view-banner a {
-  color: var(--text-primary);
-  text-decoration: underline;
-  text-underline-offset: 3px;
-}
-.view-banner a:hover { color: var(--accent-color); }
-
 .section {
   padding-block: clamp(56px, 9vw, 104px);
   scroll-margin-top: 24px;
@@ -570,19 +546,6 @@ button { font: inherit; }
   max-width: 62ch;
 }
 
-.certifications {
-  margin-top: 56px;
-}
-.certifications__head {
-  font-family: var(--font-mono);
-  font-size: 12px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--text-secondary);
-  padding-bottom: 12px;
-  border-bottom: var(--rule-hair);
-  margin-bottom: 4px;
-}
 .cert-item {
   display: flex;
   justify-content: space-between;
@@ -601,6 +564,13 @@ button { font: inherit; }
   font-size: 11px;
   letter-spacing: 0.06em;
   text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+.courses__legend {
+  margin-top: 14px;
+  font-family: var(--font-mono);
+  font-size: 11px;
   color: var(--text-secondary);
 }
 
@@ -676,21 +646,6 @@ button { font: inherit; }
   color: var(--text-secondary);
 }
 .social-list a:hover span.arrow { color: var(--accent-color); }
-
-.resume-downloads {
-  margin-top: 48px;
-  padding-top: 32px;
-  border-top: var(--rule-hair);
-}
-.resume-downloads__label {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--text-secondary);
-  margin-bottom: 4px;
-}
-.resume-downloads__list { margin-top: 0; }
 
 /* ==========================================================================
    FOOTER — metadata only
