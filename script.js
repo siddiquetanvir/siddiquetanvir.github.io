@@ -150,6 +150,13 @@
       <div class="tech-stack">
         ${(hero.tech_stack || []).map((t) => `<span class="badge">${escapeHtml(t)}</span>`).join("")}
       </div>
+      <div style="margin-top: 32px;">
+        <a class="badge badge--accent" href="./MasterCV.pdf" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 6px; padding: 10px 16px; font-weight: bold; font-size: 12px; transition: transform 0.2s ease, background 0.2s ease;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+          Download Résumé
+          Download CV
+        </a>
+      </div>
     `;
     return section;
   }
@@ -216,15 +223,32 @@
     projects.forEach((p) => {
       const card = el("article", "project-card");
       const tags = p.tags || [];
+      
+      let linksHTML = '';
+      if (p.github) {
+        linksHTML += `
+          <a class="project-card__link" href="${escapeHtml(p.github)}" target="_blank" rel="noopener noreferrer">
+            View on GitHub <span aria-hidden="true">&#8599;</span>
+          </a>
+        `;
+      }
+      if (p.streamlit || p.demo) {
+        linksHTML += `
+          <a class="project-card__link" href="${escapeHtml(p.streamlit || p.demo)}" target="_blank" rel="noopener noreferrer">
+            Live Demo <span aria-hidden="true">&#8599;</span>
+          </a>
+        `;
+      }
+
       card.innerHTML = `
         <div class="project-card__tags">
           ${tags.map((t) => `<span class="badge">${escapeHtml(t)}</span>`).join("")}
         </div>
         <h3 class="project-card__title">${escapeHtml(p.title || "")}</h3>
         <p class="project-card__desc">${escapeHtml(p.description || "")}</p>
-        <a class="project-card__link" href="${escapeHtml(p.github || "#")}" target="_blank" rel="noopener noreferrer">
-          View on GitHub <span aria-hidden="true">&#8599;</span>
-        </a>
+        <div style="display: flex; flex-direction: column; width: 100%;">
+          ${linksHTML}
+        </div>
       `;
       grid.appendChild(card);
     });

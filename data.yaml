@@ -3,13 +3,22 @@ site:
   location: "KUET — Khulna, Bangladesh"
   since: "2026"
 
+# ==============================================================================
+# NAVIGATION ORDER & VISIBILITY
+# ------------------------------------------------------------------------------
+# Any section listed here will appear in the sidebar quick-rail and render on
+# the page in the exact sequence specified. To enable or disable a section,
+# simply comment/uncomment its entry here and ensure its corresponding data block
+# below is filled in.
+# ==============================================================================
 nav:
   - id: "about"
     label: "About"
   - id: "impact"
     label: "Impact"
-  - id: "achievements"
-    label: "Achievements"
+  # - id: "achievements"
+  # - id: "achievements"      # Uncomment once achievements list below is populated
+  #   label: "Achievements"
   - id: "skills"
     label: "Skills"
   - id: "projects"
@@ -20,14 +29,17 @@ nav:
     label: "Leadership"
   - id: "education"
     label: "Education"
-  - id: "courses"
-    label: "Courses"
-  - id: "certifications"
-    label: "Certifications"
+  # - id: "courses"
+  # - id: "courses"           # Uncomment once courses list below is populated
+  #   label: "Courses"
+  # - id: "certifications"
+  # - id: "certifications"    # Uncomment once certifications list below is populated
+  #   label: "Certifications"
   - id: "research"
     label: "Research"
   - id: "contact"
     label: "Contact"
+
 
 hero:
   name: "Tanvir Siddique"
@@ -143,27 +155,79 @@ contact:
 # ACHIEVEMENTS — optional, empty by default. Awards, scholarships, selective
 # programs, notable recognitions — one plain-text bullet per line.
 # Example (uncomment to activate):
+# ==============================================================================
+# ACHIEVEMENTS (Optional)
+# ------------------------------------------------------------------------------
+# Format: A plain list of string bullets highlighting competitive programming ranks,
+# hackathons, scholarships, Olympiads, or recognitions.
+#
+# To activate:
+# 1. Uncomment "achievements" in the `nav` list above.
+# 2. Add your items below:
+#
 # achievements:
 #   - "Received the [Award Name] for [reason]."
 #   - "Selected for [Program] at [Institution], from [N]+ applicants."
+#   - "Champion, National Hackathon 2025 (KUET Team Lead)."
+#   - "Top 5% finish in Codeforces Round #900 (Div. 2)."
+#   - "Recipient of KUET Dean's Scholarship for Academic Excellence."
+# ==============================================================================
 achievements: []
 
 # COURSES — optional, empty by default. Coursework worth surfacing.
 # `status`: "completed" | "ongoing" (renders a small dagger marker).
 # `grade` is optional (e.g. a top grade worth highlighting).
 # Example:
+# ==============================================================================
+# COURSES & RELEVANT COURSEWORK (Optional)
+# ------------------------------------------------------------------------------
+# Format: A list of objects detailing university or specialized courses.
+# Fields:
+#   - name:   (String, Required) Course title
+#   - status: (String, Optional) "completed" or "ongoing" (ongoing adds a † indicator)
+#   - grade:  (String, Optional) Final grade, e.g. "A+", "4.00", etc.
+#
+# To activate:
+# 1. Uncomment "courses" in the `nav` list above.
+# 2. Add your items below:
+#
 # courses:
 #   - name: "Introduction to Machine Learning"
+#   - name: "Data Structures & Algorithms"
 #     status: "completed"
 #     grade: "A*"
 #   - name: "Linear Algebra"
+#     grade: "A+"
+#   - name: "Object Oriented Programming (C++)"
+#     status: "completed"
+#   - name: "Discrete Mathematics"
 #     status: "ongoing"
+# ==============================================================================
 courses: []
 
 # CERTIFICATIONS — optional, empty by default.
 # Example:
+# ==============================================================================
+# CERTIFICATIONS & LICENSES (Optional)
+# ------------------------------------------------------------------------------
+# Format: A list of objects detailing credentials, MOOCs, or vendor certifications.
+# Fields:
+#   - name:   (String, Required) Name of certification
+#   - issuer: (String, Optional) Credential organization (e.g. Coursera, DeepLearning.AI, AWS)
+#   - year:   (String/Int, Optional) Year acquired (e.g. "2026")
+#
+# To activate:
+# 1. Uncomment "certifications" in the `nav` list above.
+# 2. Add your items below:
+#
 # certifications:
 #   - name: "AWS Certified Cloud Practitioner"
 #     issuer: "Amazon Web Services"
+#   - name: "Deep Learning Specialization"
+#     issuer: "DeepLearning.AI"
 #     year: "2026"
+#   - name: "Problem Solving (Intermediate)"
+#     issuer: "HackerRank"
+#     year: "2025"
+# ==============================================================================
 certifications: []
